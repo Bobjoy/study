@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>正则表达式格式化身份证号码</title>
+ </head>
+ <body>
+  <script type="text/javascript">
+	function formatIDCard(v){
+		return v.replace(/^(\d{6})(\d{8})(\d{4})/g, '$1 $2 $3').replace(/\s+$/g, '');
+	}
+  </script>
+  <input type="text" onkeyup="this.value = formatIDCard(this.value);">
+ </body>
+</html>

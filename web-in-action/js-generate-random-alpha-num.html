@@ -1,0 +1,26 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ëæ»úÊý</title>
+</head>
+<body>
+  <style style="display:block" contentEditable>
+     body { color: blue }
+  </style>
+  
+  <div id="test" style="width: 100%; position: relative; padding-bottom: 20%;">
+    <div style="position: absolute; left: 0; top: 0; right: 0; bottom: 0;background-color:yellow;">
+      this content will have a constant aspect ratio that varies based on the width.
+     </div>
+   </div>
+   
+   <script>
+    function generateRandomAlphaNum(len) {
+      var rdmString = "";
+      for (; rdmString.length < len; rdmString += Math.random().toString(36).substr(2));
+      return rdmString.substr(0, len);
+    }
+   </script>
+   <button onclick="var a=generateRandomAlphaNum(8);this.innerText=a.toUpperCase();">RandomNumber</button>
+</body>
+</html>

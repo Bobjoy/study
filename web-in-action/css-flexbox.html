@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>CSS Web应用</title>
+  <style type="text/css">
+	.box{
+		width: auto;
+		height: 50px;
+		display: -webkit-flex;
+		-webkit-justify-content:center;
+		-webkit-align-items:center;
+	}
+
+	.sec2{
+		-webkit-flex-direction: column;
+	}
+	.sec2 > :nth-child(2){
+		-webkit-order: -1;
+	}
+
+	.sec3 > *{
+		-webkit-flex: 1 0 auto;
+	}
+	.sec3 > :nth-child(2){
+		-webkit-flex: 3 0 auto;
+	}
+  </style>
+ </head>
+ <body>
+  <section class="box">
+	<div>A</div>
+	<div>B</div>
+	<div>C</div>
+  </section>
+
+  <section class="box sec2">
+	<div>A</div>
+	<div>B</div>
+	<div>C</div>
+  </section>
+
+  <section class="box sec3">
+	<div>A</div>
+	<div>B</div>
+	<div>C</div>
+  </section>
+ </body>
+</html>

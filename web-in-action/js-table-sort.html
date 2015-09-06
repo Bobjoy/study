@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>排序-解决TABLE不能添加TR</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<style>
+		table {
+			border-collapse:collapse;
+		}
+		table,tr,td {
+			border: 1px solid black;
+		}
+		.sort-col{
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	</style>
+	<script>
+/**
+  * [将字符串转换为数字]
+  * @param 指定格式的字符串
+**/
+function parseNumber(str){
+	var num = 0, regexp = /(-|\/|\\|\s+|:)/g;
+	if(typeof str == 'string'){
+		str = str.replace(/^\s+/g, '').replace(/\s+$/g, '');
+		if(str.indexOf('.') != -1){//浮点类型
+			num = parseFloat(str);
+		}else if(regexp.test(str)){//时间
+			num = parseInt(str.replace(regexp, ''));
+		}else{
+			num = parseInt(str);
+		}
+		num = isNaN(num) ? 0 : num;
+	}
+	return num;
+}
+/**
+  * [冒泡排序函数]
+  * @param 包含排序规则[orderBy]、排序的属性[orderAttr]、排序的数组[orderData]的待排序的对象
+**/
+function bubbleSort(sortObject) {
+	var  array = sortObject.orderData,
+		   orderBy = sortObject.orderBy,
+		   attr = sortObject.orderAttr;
+
+	//循环遍历所有元素，根据价格对所有元素进行冒泡排序，并将排序的元素按序放入数组
+	var length = array.length;
+	for(var i = 0; i < length; i++){
+		var data1 = (typeof(array[i])==='object') ? parseNumber(array[i].getAttribute(attr)) : array[i];
+		for(var j = 0; j < length; j++){
+			var data2 = (typeof(array[i])==='object') ? parseNumber(array[j].getAttribute(attr)) : array[j];
+
+			var temp;
+			if(orderBy == sortObject.ASC){//升序
+				if(data1 < data2){
+					temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+			}
+			if(orderBy == sortObject.DESC){//降序
+				if(data1 > data2){
+					temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				}
+			}
+		}
+	}
+	//排完序后重新设置排序规则
+	if(orderBy == sortObject.ASC){
+		sortObject.orderBy = sortObject.DESC;
+	}else{
+		sortObject.orderBy = sortObject.ASC;
+	}
+}
+
+/**
+ * [类似Java里的Collections.sort(list)功能]
+ * @param 包含排序规则[orderBy]、排序的属性[orderAttr]、排序的数组[orderData]的待排序的对象
+**/
+function compareSort(sortObject){
+	var array = sortObject.orderData;
+	var orderBy = sortObject.orderBy;
+	var attr = sortObject.orderAttr;
+	//排完序后重新设置排序规则
+	if(orderBy == sortObject.ASC){
+		sortObject.orderBy = sortObject.DESC;
+	}else{
+		sortObject.orderBy = sortObject.ASC;
+	}
+
+	return function(obj1, obj2){
+		var data1 = parseNumber(obj1.getAttribute(attr));
+		var data2 = parseNumber(obj2.getAttribute(attr));
+
+		if(orderBy == sortObject.ASC){//升序
+			if(data1 < data2){
+				return -1;
+			}else if(data1 > data2){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+		if(orderBy == sortObject.DESC){//降序
+			if(data1 > data2){
+				return -1;
+			}else if(data1 < data2){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
+	}
+}
+	</script>
+</head>
+<body>
+	<h1>1、使用TR的冒泡排序</h1>
+	<table>
+		<tbody id="flight-table1">
+			<tr><th>序号</th><th>航空公司</th><th>出发城市</th><th>到达城市</th><th class="sort-col" data-orderBy="asc" data-orderAttr="data-price" onclick="sort1(this)">票价</th></tr>
+			<tr data-price="1000"><th>1</th><td>南航</td><td>武汉</td><td>北京</td><td>￥1000</td></tr>
+			<tr data-price="300"><th>2</th><td>东航</td><td>武汉</td><td>上海</td><td>￥300</td></tr>
+			<tr data-price="100"><th>3</th><td>南航</td><td>深圳</td><td>广州</td><td>￥100</td></tr>
+			<tr data-price="800"><th>4</th><td>上航</td><td>海口</td><td>青岛</td><td>￥800</td></tr>
+			<tr data-price="2000"><th>5</th><td>东航</td><td>武汉</td><td>北京</td><td>￥2000</td></tr>
+			<tr data-price="300"><th>6</th><td>东航</td><td>武汉</td><td>北京</td><td>￥300</td></tr>
+		</tbody>
+	</table>
+	<hr/>
+	<h1>2、使用TR的SORT排序</h1>
+	<table>
+		<tbody id="flight-table2">
+			<tr>
+				<th>序号</th><th>航空公司</th><th>出发城市</th><th>到达城市</th>
+				<th class="sort-col" data-orderBy="asc" data-orderAttr="data-departDate" onclick="sort2(this)">起飞时间</th>
+				<th class="sort-col" data-orderBy="asc" data-orderAttr="data-arriveTime" onclick="sort2(this)">到达时间</th>
+				<th class="sort-col" data-orderBy="asc" data-orderAttr="data-price" onclick="sort2(this)">票价</th>
+			</tr>
+			<tr data-price="1000" data-departDate="2014-06-12 13:58" data-arriveTime="15:30">
+				<th>1</th><td>南航</td><td>武汉</td><td>北京</td><td>2014-06-12 13:58</td><td>15:30</td><td>￥1000</td>
+			</tr>
+			<tr data-price="300" data-departDate="2014-06-12 05:02" data-arriveTime="05:45">
+				<th>2</th><td>东航</td><td>武汉</td><td>上海</td><td>2014-06-12 05:02</td><td>05:45</td><td>￥300</td>
+			</tr>
+			<tr data-price="100" data-departDate="2014-06-13 20:44" data-arriveTime="23:00">
+				<th>3</th><td>南航</td><td>深圳</td><td>广州</td><td>2014-06-13 20:44</td><td>23:00</td><td>￥100</td>
+			</tr>
+			<tr data-price="800" data-departDate="2014-07-02 08:56" data-arriveTime="12:23">
+				<th>4</th><td>上航</td><td>海口</td><td>青岛</td><td>2014-07-02 08:56</td><td>12:23</td><td>￥800</td>
+			</tr>
+			<tr data-price="2000" data-departDate="2014-06-11 21:51" data-arriveTime="00:01">
+				<th>5</th><td>东航</td><td>武汉</td><td>北京</td><td>2014-06-11 21:51</td><td>00:01</td><td>￥2000</td>
+			</tr>
+			<tr data-price="300" data-departDate="2014-05-29 14:30" data-arriveTime="19:00">
+				<th>6</th><td>东航</td><td>武汉</td><td>北京</td><td>2014-05-29 14:30</td><td>19:00</td><td>￥300</td>
+			</tr>
+		</tbody>
+	</table>
+	<hr/>
+	<h1>3、使用TBODY的SORT排序</h1>
+	<table id="flight-table3">
+		<thead>
+		<tr>
+			<th>序号</th><th>航空公司</th><th>出发城市</th><th>到达城市</th>
+			<th class="sort-col" data-orderBy="asc" data-orderAttr="data-departDate" onclick="sort3(this)">起飞时间</th>
+			<th class="sort-col" data-orderBy="asc" data-orderAttr="data-arriveTime" onclick="sort3(this)">到达时间</th>
+			<th class="sort-col" data-orderBy="asc" data-orderAttr="data-price" onclick="sort3(this)">票价</th>
+		</tr>
+		</thead>
+		<tbody data-price="1000" data-departDate="2014-06-12 13:58" data-arriveTime="15:30">
+			<tr><th>1</th><td>南航</td><td>武汉</td><td>北京</td><td>2014-06-12 13:58</td><td>15:30</td><td>￥1000</td></tr>
+			<tr colspan="5"><td></td><td>A</td><td>B</td><td>C</td></tr>
+		</tbody>
+		<tbody data-price="300" data-departDate="2014-06-12 05:02" data-arriveTime="05:45">
+			<tr><th>2</th><td>东航</td><td>武汉</td><td>上海</td><td>2014-06-12 05:02</td><td>05:45</td><td>￥300</td></tr>
+			<tr colspan="5"><td></td><td>D</td><td>E</td><td>F</td></tr>
+		</tbody>
+		<tbody data-price="100" data-departDate="2014-06-13 20:44" data-arriveTime="23:00">
+			<tr><th>3</th><td>南航</td><td>深圳</td><td>广州</td><td>2014-06-13 20:44</td><td>23:00</td><td>￥100</td></tr>
+			<tr colspan="5"><td></td><td>G</td><td>H</td><td>I</td></tr>
+		</tbody>
+		<tbody data-price="800" data-departDate="2014-07-02 08:56" data-arriveTime="12:23">
+			<tr><th>4</th><td>上航</td><td>海口</td><td>青岛</td><td>2014-07-02 08:56</td><td>12:23</td><td>￥800</td></tr>
+			<tr colspan="5"><td></td><td>J</td><td>K</td><td>L</td></tr>
+		</tbody>
+		<tbody data-price="2000" data-departDate="2014-06-11 21:51" data-arriveTime="00:01">
+			<tr><th>5</th><td>东航</td><td>武汉</td><td>北京</td><td>2014-06-11 21:51</td><td>00:01</td><td>￥2000</td></tr>
+			<tr colspan="5"><td></td><td>M</td><td>N</td><td>O</td></tr>
+		</tbody>
+		<tbody data-price="300" data-departDate="2014-05-29 14:30" data-arriveTime="19:00">
+			<tr><th>6</th><td>东航</td><td>武汉</td><td>北京</td><td>2014-05-29 14:30</td><td>19:00</td><td>￥300</td></tr>
+			<tr colspan="5"><td></td><td>P</td><td>Q</td><td>R</td></tr>
+		</tbody>
+	</table>
+
+<script>
+/**
+ * [使用TR的冒泡排序]
+ * @param 待排序的列，该元素上存放着排序排序规则[data-orderBy]，和待排序的属性[data-orderAttr]
+**/
+function sort1(sortColumn){
+	var flightTable = document.getElementById('flight-table1');
+	var sortObject = {
+		ASC		: 'asc',																				//升序常量
+		DESC		: 'desc',																		//降序常量
+		orderBy	: sortColumn.getAttribute('data-orderBy'),		//排序规则
+		orderAttr: sortColumn.getAttribute('data-orderAttr'),	//针对排序的属性
+		orderData: []																				//待排序的对象
+	};
+	//用于存放排序后的元素
+	var orderedArray = [];
+
+	//去除表头
+	for(var i = 1, rows = flightTable.rows; i < rows.length; i++){
+		sortObject.orderData.push(rows[i]);
+	}
+	//冒泡排序
+	bubbleSort(sortObject);
+	//排序后的数组
+	orderedArray = sortObject.orderData;
+	//将排好序的数组重新放入Table元素中
+	for(var i = 0, len = orderedArray.length; i < len; i++){
+		console.log(flightTable.appendChild);
+		flightTable.appendChild(orderedArray[i]);
+	}
+	//将重新设置的排序规则赋值到元素属性中
+	sortColumn.setAttribute('data-orderBy', sortObject.orderBy);
+}
+
+/**
+ * [使用TR的SOTR排序]
+ * @param 待排序的列，该元素上存放着排序排序规则[data-orderBy]，和待排序的属性[data-orderAttr]
+**/
+function sort2(sortColumn){
+	var flightTable = document.getElementById('flight-table2');
+	var sortObject = {
+		ASC		: 'asc',																				//升序常量
+		DESC		: 'desc',																		//降序常量
+		orderBy	: sortColumn.getAttribute('data-orderBy'),		//排序规则
+		orderAttr: sortColumn.getAttribute('data-orderAttr'),	//针对排序的属性
+		orderData: []																				//待排序的对象
+	};
+	//去除表头
+	for(var i = 1, rows = flightTable.rows; i < rows.length; i++){
+		sortObject.orderData.push(rows[i]);
+	}
+	//用于存放排序后的元素
+	var orderedArray = [];
+	//类似Java的sort排序
+	sortObject.orderData.sort(compareSort(sortObject));
+	//排序后的数组
+	orderedArray = sortObject.orderData;
+	//将排好序的数组重新放入Table元素中
+	for(var i = 0, len = orderedArray.length; i < len; i++){
+		flightTable.appendChild(orderedArray[i]);
+	}
+	//将重新设置的排序规则赋值到元素属性中
+	sortColumn.setAttribute('data-orderBy', sortObject.orderBy);
+}
+
+/**
+ * [使用TBODY的SOTR排序]
+ * @param 待排序的列，该元素上存放着排序排序规则[data-orderBy]，和待排序的属性[data-orderAttr]
+**/
+function sort3(sortColumn){
+	var flightTable = document.getElementById('flight-table3');
+	var sortObject = {
+		ASC		: 'asc',																				//升序常量
+		DESC		: 'desc',																		//降序常量
+		orderBy	: sortColumn.getAttribute('data-orderBy'),		//排序规则
+		orderAttr: sortColumn.getAttribute('data-orderAttr'),	//针对排序的属性
+		orderData: []																				//待排序的对象
+	};
+	
+	for(var i = 0, tBodies = flightTable.tBodies; i < tBodies.length; i++){
+		sortObject.orderData.push(tBodies[i]);
+	}
+	//用于存放排序后的元素
+	var orderedArray = [];
+	//类似Java的sort排序
+	sortObject.orderData.sort(compareSort(sortObject));
+	//排序后的数组
+	orderedArray = sortObject.orderData;
+	//将排好序的数组重新放入Table元素中
+	for(var i = 0, len = orderedArray.length; i < len; i++){
+		flightTable.appendChild(orderedArray[i]);
+	}
+	//将重新设置的排序规则赋值到元素属性中
+	sortColumn.setAttribute('data-orderBy', sortObject.orderBy);
+}
+</script>
+</body>
+</html>

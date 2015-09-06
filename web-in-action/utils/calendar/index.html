@@ -1,0 +1,118 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+  <meta name="keywords" content="JS代码,其他代码,JS广告代码,JS特效代码" />
+  <meta name="description" content="此代码内容为带阴历和节日的JS日历，属于站长常用代码，更多其他代码代码请访问懒人图库JS代码频道。" />
+  <title>带阴历和节日的JS日历_懒人图库</title>
+  <style type="text/css">
+  .todyaColor {BACKGROUND-COLOR: #000000;color:#FFFFFF}
+  </style>
+
+  <script type="text/javascript" src="calender.js"></script>
+</head>
+
+<body onload=initial()>
+  <DIV id=detail style="POSITION: absolute"></DIV>
+  <FORM name=CLD>
+    <div align="center">
+      <label></label>
+      <label></label>
+      <TABLE width="444" border="0" align="right" cellpadding="0" cellspacing="0" bordercolordark="#CC9900">
+        <TBODY>
+          <TR>
+            <TD align=middle width="444" height="48">
+
+              <TABLE  height="27" border=0 cellpadding="0" cellspacing="1" bordercolor="#000000">
+                <TBODY>
+                  <tr>
+                    <td colspan="7" valign="bottom" align="right">
+                      <table>
+                        <tr>
+                          <td width="50%" valign="bottom"></td>
+                          <td width="50%" valign="top">
+                            <FONT id=YMBG style="FONT-FAMILY: 'Arial Black'; FONT-SIZE: 20pt"></FONT>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                  <TR>
+                    <TD style="display:none" bgColor=#000080 colSpan=7 align="center" height="0">
+                      <FONT color=#000080 size=2 style="FONT-SIZE: 9pt">月</FONT>
+                      <FONT color=#ffffff face=宋体 id=GZ size=4></FONT><BR>
+                    </TD>
+                  </TR>
+                  <TR align=middle bgColor=#e0e0e0>
+                    <TD width=54 align="center" bgcolor="#000000"> <font size="2" color="#FFFFFF">sunday</font></TD>
+                    <TD width=54 align="center" bgcolor="#000000"> <font size="2" color="#FFFFFF">monday</font></TD>
+                    <TD width=54 align="center" bgcolor="#000000"> <font size="2" color="#FFFFFF">tuesday</font></TD>
+                    <TD width=54 align="center" bgcolor="#000000"> <font size="2" color="#FFFFFF">wednesday</font></TD>
+                    <TD width=54 align="center" bgcolor="#000000"><font size="2" color="#FFFFFF">thursday</font></TD>
+                    <TD width=54 align="center" bgcolor="#000000"><font size="2" color="#FFFFFF">friday</font></TD>
+                    <TD width=54 align="center" bgcolor="#000000"><font size="2" color="#FFFFFF">saturday</font></TD>
+                  </TR>
+<script>
+ var gNum
+ for(i=0;i<6;i++) {
+    document.write('<tr align=center id="hang'+i+'">')
+    for(j=0;j<7;j++) {
+      gNum = i*7+j
+      document.write('<td id="GD' + gNum +'" onMouseOver="mOvr(' + gNum +')" height="60" onMouseOut="mOut()"><table width="100%"  height="50" border="0" cellpadding="0" cellspacing="1" bgcolor="#000000"><tr><td align="center"  id="SD' + gNum +'"  bgcolor="#FFFFFF" style="font-family:Arial Black" style="font-size:24pt">')
+
+      document.write('</tr></td></table><table width=100%   height="20" border="0" cellpadding="0" cellspacing="1" bgcolor="#000000"><tr><td align="center" id="LD' + gNum + '" valign="bottom" bgcolor="#FFFFFF" style="font-size:9pt"></tr></td></table></td>')
+    }
+    document.write('</tr>')
+ }
+ </script>
+                  <tr>
+                    <td colSpan=7 >
+                      <br>
+                      <table width=100% border="0" cellpadding="0" cellspacing="0">
+                        <tr>
+
+                          <td align="right">
+                            <div style="float:left;">公历&nbsp;</div>
+                            <div style="overflow:hidden; position:relative; width:60px; height:20px; float:left; margin-top:-3px;">
+                              <div style="overflow:hidden; position:relative; width:60; height:20;" >
+                                <SELECT name="SY"  style="position:absolute; top:-2; left:-2; " onchange="changeCld()" style="FONT-SIZE: 9pt">
+<script>
+for(i=1900;i<2050;i++) {
+  document.write('<option style="background-color:">'+i+'</option>');
+}
+ </script>
+                                </SELECT>
+                                &nbsp;
+                              </div>
+                            </div>
+                            <div style="float:left;">&nbsp;年&nbsp;</div>
+                            <div style="overflow:hidden; position:relative; width:40px; height:20px; float:left; margin-top:-3px;">
+                              <div style="overflow:hidden; position:relative; width:40px; height:20px;">
+                                <SELECT name="SM"  style="position:absolute; top:-2; left:-2" onchange="changeCld()" style="FONT-SIZE: 9pt">
+<script>
+for(i=1;i<13;i++) {
+  document.write('<option>'+i)
+}
+</script>
+                                </SELECT>
+                              </div>
+                            </div>
+                            <div style="float:left;">&nbsp;月&nbsp;</div>
+                            <img width="23" title="上月" height="12" border="0" onClick="pushBtm('MU')" />
+                            <img width="23" title="本月" height="12" border="0" onClick="pushBtm('')" />
+                            <img width="24" title="下月" height="12" border="0" onClick="pushBtm('MD')" />
+                          </td>
+
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </TBODY>
+              </TABLE>
+            </TD>
+          </TR>
+        </TBODY>
+      </TABLE>
+    </div>
+  </FORM>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>计算一个字符串中所有数字总和</title>
+ </head>
+ <body>
+  <script>
+function sumUpDigits(inputString) {
+  var answer = 0;
+
+  for (var i = 0; i < inputString.length; i++) {
+    if ('1' <= inputString[i] && inputString[i] <= '9') {
+      answer += inputString.charCodeAt(i) - '0'.charCodeAt(0);
+    }
+  }
+
+  return answer;
+}
+
+var str = '2 apples, 12 oranges';
+var sum = sumUpDigits(str);
+alert(sum);
+
+  </script>
+ </body>
+</html>

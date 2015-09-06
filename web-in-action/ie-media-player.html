@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>MediaPlayer示例</title>
+    <style type="text/css">
+        body
+        {
+            font-size:12px;
+            font-family:宋体;
+        }
+        #divMpl
+        {
+            height: 137px;
+            width: 277px;
+        }
+        #divMsg
+        {
+            height: 155px;
+            overflow:auto;
+            width: 376px;
+        }
+    </style>
+    <script language="javascript" type="text/javascript">
+    /* MediaPlayer类定义 */
+    function MediaPlayer()
+    {
+        this.dom=null;
+    }
+    MediaPlayer.uiMode=
+    {
+        Full:"full",
+        Mini:"mini",
+        None:"none",
+        Invisible:"invisible"
+    }
+    MediaPlayer.prototype={
+        //在指定ID的标签中创建MediaPlayer控件，大小由该标签决定
+         CreateAt:function(id)
+        {
+            this.dom=document.createElement("object");
+            this.dom.classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6";
+            this.dom.style.width="100%";
+            this.dom.style.height="100%";
+            var container=document.getElementById(id);
+            container.innerHTML="";
+            container.appendChild(this.dom);
+            this._Init();
+        },
+        
+        //绑定一个已存在的Object标签，该标签应该为一个MediaPlayer控件
+         BindID:function(id) 
+        {
+            this.dom=document.getElementById(id);
+            this._Init();
+        },
+        _Init:function()    //初始化，注册事件
+        {
+            var _this=this;
+            if(!window.attachEvent)
+            {
+                this.dom.attachEvent=function(evn,fun)
+                {
+                }
+            }
+            this.dom.attachEvent("PlayStateChange",
+                function(newState){_this.onPlayStateChange(newState)});
+            this.dom.attachEvent("Buffering",function(bStart){ _this.onBuffering(bStart) });
+            this.dom.attachEvent("Error",function(){ _this.onError(); });
+            this.dom.attachEvent("PositionChange",
+                function(oldPos,newPos){ _this.onPositionChange(oldPos,newPos); } );
+            this.dom.attachEvent("StatusChange",function(){ _this.onStatusChange(); })
+        },
+        onPlayStateChange:function(newState)
+        {
+            switch(newState)
+            {
+            case 1: //wmppsStopped
+                this.onStop();
+                break;
+            case 2:  //wmppsPaused
+                this.onPaused();
+                break;
+            case 3:  //wmppsPlaying
+                this.onPlay();
+                break;
+            case 4:  //wmppsScanForward
+                break;
+            case 5:  //wmppsScanReverse
+                break;
+            case 6:  //wmppsBuffering
+                this.onBuffering_SC();
+                break;
+            case 7:  //wmppsWaiting
+                break;
+            case 8:  //wmppsMediaEnded
+                this.onMediaEnded();
+                break;
+            case 9:  //wmppsTransitioning
+                this.onTransitioning();
+                break;
+            case 10:  //wmppsReady
+                break;
+            case 11:  //wmppsReconnecting
+                break;
+            case 12:  //wmppsLast
+                break;
+            case 0:  //wmppsUndefined
+                break;
+            default:
+                break;
+            }
+        },
+        // 事件列表
+         onStop:function(){},
+        onPaused:function(){},
+        onPlay:function(){},
+        onBuffering_SC:function(){},
+        onTransitioning:function(){},
+        onMediaEnded:function(){},
+        onError:function(){},
+        onPositionChange:function(oldPos,newPos){},
+        onStatusChange:function(){},
+        onBuffering:function(bStart){},
+        
+        // 设置 暂时只做两个
+         setMode:function(mode){ this.dom.uiMode=mode; },
+        setVolume:function(v){ this.dom.settings.volume=v; },
+        
+        // 各种属性
+        getMediaName:function()
+        {
+            var media=this.dom.currentMedia;
+            if(media)
+            {
+                return media.name;
+            }
+            return "";
+        },
+        getMediaDuration:function()
+        {
+            var media=this.dom.currentMedia;
+            if(media)
+            {
+                return media.duration;
+            }
+            return "";
+        },
+        getMediaDurationString:function()
+        {
+            var media=this.dom.currentMedia;
+            if(media)
+            {
+                return media.durationString;
+            }
+            return "";
+        },
+        getStatus:function(){ return this.dom.status; },
+        getPosition:function(){ return this.dom.controls.currentPosition; },
+        getPositionString:function(){ return this.dom.controls.currentPositionString; },
+        getPlayState:function(){ return this.dom.playState; },
+        
+        // 操作方法
+         OpenUrl:function(URL){ this.dom.URL=URL; },
+        Play:function(){ this.dom.controls.play(); },
+        Pause:function(){ this.dom.controls.pause();},
+        Stop:function(){ this.dom.controls.stop(); }
+    }
+    /* MediaPlayer类定义 */
+    
+    var mpl=new MediaPlayer();  //创建一个MediaPlayer
+    window.onload=function()
+    {
+        mpl.CreateAt("divMpl"); //在divMpl中创建MediaPlayer
+        mpl.setVolume(100);  //设置音量
+        mpl.setMode(MediaPlayer.uiMode.Full); //设置显示模式
+
+         //事件响应代码
+        mpl.onPlay=function(){ ShowMessage("正在播放["+this.getMediaName()+"]"); };
+        mpl.onPaused=function(){ ShowMessage("暂停"); };
+        mpl.onMediaEnded=function(){ ShowMessage("播放结束"); };
+        mpl.onStop=function(){ ShowMessage("停止"); };
+        mpl.onPositionChange=function(oldPos,newPos){
+            var pos1={
+                min:parseInt(oldPos/60),
+                sec:parseInt(oldPos%60)
+            }
+            var pos2={
+                min:parseInt(newPos/60),
+                sec:parseInt(newPos%60)
+            }
+            ShowMessage(pos1.min+":"+pos1.sec+ "->"+ pos2.min+":"+pos2.sec);
+        };
+        //mpl.onStatusChange=function(){ ShowMessage(this.getStatus()); };
+        mpl.OpenUrl("resources/test.mp3");  //打开音乐
+        window.setInterval("ShowPlayTime()",1000);
+    }
+    //显示播放时间
+    function ShowPlayTime()
+    {
+        if(mpl.getPlayState()==3)
+        {
+            ShowStatus(mpl.getPositionString());
+        }
+    }
+    function ShowMessage(str)
+    {
+        var msg=document.getElementById("divMsg");
+        var tn=document.createTextNode(str);
+        msg.appendChild(tn);
+        msg.appendChild(document.createElement("br"));
+    }
+    function ShowStatus(str)
+    {
+        document.getElementById("divStatus").innerHTML=str;
+    }
+    </script>
+</head>
+<body>
+<div id="divMpl"></div>
+<div id="divStatus">&nbsp;</div>
+<!-- object id="wmp1" classid="CLSID:6BF52A52-394A-11d3-B153-00C04F79FAA6" width="100%" height="200">
+  <param name="autoStart" value="true"/>
+  <param name="enableErrorDialogs" value="false"/>
+  <param name="volume" value="100">
+  <param name="uiMode" value="full"/>
+  <param name="URL" value="DuskToDawn.wma"/>
+</object  -->
+    <input type="button" value="清空消息" onclick="document.getElementById('divMsg').innerHTML='';" />
+    <div id="divMsg"></div>
+</body>
+</html>

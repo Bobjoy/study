@@ -1,0 +1,1 @@
+10.times { |count| puts("Index is #{count}")  }
