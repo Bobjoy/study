@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5振动</title>
+</head>
+<body>
+<script>
+navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+if (navigator.vibrate) {
+  while(1) {
+    navigator.vibrate([200, 100, 200]); //震 100ms, 停 100ms, 再震 200ms:
+	break;
+  }
+}
+</script>
+</body>
+</html>

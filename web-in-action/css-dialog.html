@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Modal Pop-Up</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
+    <style type="text/css">        
+        html, body {
+            font-family:Arial, Calibri; 
+            background-color:#bababa; 
+            margin:0; 
+            padding:0; 
+            text-align:center;
+            overflow:hidden;
+        }
+        
+        /*** horizontal list applied to thumbnails, nav controls ***/
+         ul {
+            float:left;
+            width:100%;
+            margin: 0px 0px 20px 0px;
+            padding:0;
+            list-style-type:none;
+        }
+        li {display:inline; margin-right:5px;}  
+        
+        /*** pop-up div to cover entire area ***/
+        .divModalDialog  {
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100%;
+            /*! important !*/
+            display:none;
+            /* last attribute set darkness on scale: 0...1.0 */
+            background-color:rgba(0,0,0,0.8);
+            text-align:center;
+            z-index:101;
+        }
+        
+        /*** ! target attribute does the job ! ***/
+        .divModalDialog:target  { display:block; }
+        
+        /*** virtual frame containing controls, image and caption ***/
+        .divModalDialog div  {
+           /* either absolute or fixed */
+            position:fixed;
+            top:5%;
+            width:100%;
+            height:80%;
+            /* rounded corners */
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            z-index:102;
+        }
+        
+        /*** header used as main image caption  ***/
+        .divModalDialog div h1  {
+            width:100%;
+            font-size:2em;
+            color:#dadada;
+            z-index:103;
+            /* add shadows to text */
+            -moz-text-shadow: 10px 3px 4px 6px rgba(0,0,0,0.9);  
+            -webkit-text-shadow: 3px 4px 6px rgba(0,0,0,0.9);  
+            text-shadow: 10px 4px 6px rgba(0,0,0,0.9); 
+        }        
+ 
+        /*** main image style ***/
+        .divModalDialog img {
+            padding:20px;
+            z-index:105;
+            border: solid 1px gray;
+            /* rounded corners */
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            background: -moz-linear-gradient(top, #dadada, 
+                                                    #505050 5%, 
+                                                    #bababa 50%, 
+                                                    #303030 50%, 
+                                                    #101010);
+            background: -webkit-gradient(linear, center top, center bottom, 
+                                                    from(#dadada), 
+                                                    color-stop(0.05, #505050), 
+                                                    color-stop(0.5, #bababa), 
+                                                    color-stop(0.5, #303030), 
+                                                    to(#101010));
+        } 
+ 
+        /*** navigation controls style: highest z-index ! ***/
+        .divModalDialog ul a  {
+            padding:5px;
+            font-size:3em;
+            font-weight:bold;
+            color:Yellow;
+            text-decoration:none;
+            border: solid 1px Gray;
+            /* rounded corners */
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            z-index:110;
+        }
+ 
+        /*** div serves as thumbnais container  ***/
+        #divThumbnails {
+            position:relative;
+            margin: 75px 0 0 0;
+            height:250px;
+            padding-top:30px;
+            background-color:#cacaca;
+            
+             /* add shadows */
+            -moz-box-shadow: 5px 5px 10px rgba(50,50,50,0.7);
+            -webkit-box-shadow: 5px 5px 10px rgba(50,50,50,0.7);
+            box-shadow: 5px 5px 10px rgba(50,50,50,0.7);
+            
+            /* gradient effect with color-stop */
+            background: -moz-linear-gradient(top, #f0f0f0, 
+                                                #bababa 10%, 
+                                                #cacaca 49%, 
+                                                #909090 50%, 
+                                                #cacaca 50%, 
+                                                #cacaca 90%, 
+                                                #ababab);
+            background: -webkit-gradient(linear, center top, center bottom, 
+                                                from(#f0f0f0), 
+                                                color-stop(0.1, #bababa ), 
+                                                color-stop(0.49, #cacaca), 
+                                                color-stop(0.50, #909090), 
+                                                color-stop(0.50, #cacaca), 
+                                                color-stop(0.90, #cacaca), 
+                                                to(#ababab));
+        }
+ 
+        /*** thumbnails image style ***/
+        #divThumbnails img {
+            padding:10px;
+            height:200px;
+            max-width:300px;
+            border: solid 1px gray;
+            /* rounded corners */
+            -moz-border-radius: 10px;
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+            /* add shadows */
+            -moz-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            -webkit-box-shadow: 5px 5px 10px rgba(0,0,0,0.5);
+            box-shadow: 5px 5px 10px rgba(0,0,0,0.5);        
+            z-index:1;
+        } 
+ 
+        /*** hover effects increase visual responsiveness ***/
+        #divThumbnails img:hover, .divModalDialog ul a:hover
+        {
+            background:#505050;
+            background: -moz-linear-gradient(top, #eaeaea, 
+                                                #505050 50%, 
+                                                #303030 50%, 
+                                                #404040);
+            background: -webkit-gradient(linear, left top, left bottom, 
+                                                        from(#eaeaea),
+                                                        color-stop(0.5, #505050), 
+                                                        color-stop(0.5, #303030), 
+                                                        to(#404040));
+        }
+ 
+        /*** fancy text effect: 180 degree ***/
+        #divUpsideDown  {
+            position: relative; 
+            margin-top:5%;
+            width:100%;
+            ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)"; /*            
+            -moz-transform: rotate(-180deg);
+            -o-transform: rotate(-180deg);
+            -webkit-transform: rotate(-180deg);
+            font-size:3em;
+            font-weight:bold;
+            color:Maroon;
+           /* add shadows to text */
+            -moz-text-shadow: 3px 3px 5px rgba(250,250,210,0.9);
+            -webkit-text-shadow: 3px 3px 5px rgba(250,250,210,0.9);
+            text-shadow: 3px 3px 5px rgba(250,250,210,0.9);
+        }
+ 
+        /* page footer/header: fixed */
+        #footer, #header {
+            position:fixed;
+            margin:0;
+            padding:0;
+            text-align:center;
+            background-color:#606060;
+            color: #cacaca;
+            /* add shadows to text */
+            -moz-text-shadow: 10px 3px 4px 6px rgba(10,10,10,0.6);  
+            -webkit-text-shadow: 3px 4px 6px rgba(10,10,10,0.6);  
+            text-shadow: 3px 4px 6px rgba(10,10,10,0.6);    
+        }
+        #header{
+            top:0; 
+            height:70px; 
+            width:100%;
+            background:#404040;
+        }
+        #footer {
+            width:75%;
+            bottom:0;
+            height:50px;
+            padding-top:15px;
+            text-align:left;
+            text-indent:20%;
+            /* top rounded corners */
+            -webkit-border-top-right-radius: 40px;
+            -moz-border-radius-topright: 40px;
+            border-top-right-radius: 40px;
+            background: -moz-linear-gradient(top, #ababab, 
+                                                    #505050 70%, 
+                                                    #303030 70%, 
+                                                    #202020);
+            background: -webkit-gradient(linear, left top, left bottom, 
+                                        from(#ababab),
+                                        color-stop(0.75, #505050), 
+                                        color-stop(0.75, #303030), 
+                                        to(#202020));  
+        }    </style>
+</head>
+ 
+<body>
+    <div id="header">
+        <h2>MODAL POP-UP DIALOG IMPLEMENTED IN HTML5/CSS3 (NO JAVASCRIPT)</h2>
+    </div>
+    
+    <!-- NAV THUMBNAILS -->
+    <div id="divThumbnails">
+        <ul>
+            <li><a href="#divModalDialog1"><img
+				src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" 
+                alt="JOHN TRAVOLTA, NICOLAS CAGE, NY MUSEUM" /></a></li>
+            <li><a href="#divModalDialog2"><img
+                src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" 
+                alt="TITAN ATLAS NY" /></a></li>
+            <li><a href="#divModalDialog3"><img
+                src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" 
+                alt="DIESEL STORE NY" /></a></li>
+            <li><a href="#divModalDialog4"><img
+                src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" 
+                alt="NEREID THOUGHT NY" /></a></li>
+        </ul>
+    </div>
+ 
+    <!--FANCY TEXT -->
+    <div id="divUpsideDown">CLICK ON IMAGE TO OPEN MODAL POP-UP</div>
+ 
+    <!--1st LINK -->
+    <div id="divModalDialog1" class="divModalDialog">
+        <div>
+            <h1>WANNA FIND DIGITAL CAMERA?</h1>
+            <ul>
+                <li><a href="#">NOPE</a></li>                      <!--CLOSE SYMBOL-->
+                <li><a href="#">YEP</a></li>  <!--EXTERNAL LINK-->
+            </ul>
+            <img src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" alt="TRAVOLTA, CAGE" />
+        </div>
+    </div>
+ 
+    <!--2nd LINK -->
+    <div id="divModalDialog2" class="divModalDialog"><div>
+            <h1>LOOKING FOR A JOB?</h1>
+            <ul>
+                <li><a href="#">?</a></li>                 <!--CLOSE-->
+                <li><a href="#">OK</a></li> <!--EXTERNAL LINK-->
+            </ul>
+            <img src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" alt="TITAN ATLAS" />
+    </div></div>
+ 
+    <!--3rd LINK -->
+    <div id="divModalDialog3" class="divModalDialog"><div>
+            <h1>NEED TUTOR?</h1>
+            <ul>
+                <li><a href="#">Oh, NO!</a></li>                              <!--CLOSE-->
+                <li><a href="#">SURE THING, YES!</a></li><!--EXTERNAL LINK-->
+            </ul>
+            <img src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" alt="DIESEL STORE NY" />
+     </div></div>
+ 
+    <!--4th LINK -->
+    <div id="divModalDialog4" class="divModalDialog"><div>
+            <h1>LET'S GO TO HOME PAGE?</h1>
+            <ul>
+                <li><a href="#">NOT NOW</a></li>                     <!--CLOSE-->
+                <li><a href="#">YEAH!</a></li><!--EXTERNAL LINK-->
+            </ul>
+            <img src="http://d.lanrentuku.com/down/png/1004/zoom_eyed_creatures/linux.png" alt="NEREID THOUGHT NY" />
+    </div></div>
+</body>
+</html>

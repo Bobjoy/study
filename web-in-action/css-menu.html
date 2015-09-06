@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>使用CSS 3制作下拉菜单</title>
+	<style>
+ul li{
+	list-style: none;
+}
+/*定义菜单背景*/
+#main_menu, #main_menu a, #main_menu a:hover{
+	background-color: #990066;
+	background-image: -webkit-linear-gradient(top, #990066, #cc0099, #990066);
+	background-image: -moz-linear-gradient(top, #990066, #cc0099, #990066);
+	background-image: -ms-linear-gradient(top, #990066, #cc0099, #990066);
+	background-image: -o-linear-gradient(top, #990066, #cc0099, #990066);
+}
+#main_menu{
+	font-family: sans-serif;
+	list-style-type: none;
+	text-align: center;
+	float: left;
+	width: 90%;
+	border-radius: 5px;
+	box-shadow: 3px 3px 2px #888888;
+}
+/*顶级菜单*/
+.top_menu{
+	float: left;
+	position: relative;
+	border-right: 1px solid #ff00cc;
+	border-left: 1px solid #ff00cc;
+	margin-left: -1px;
+}
+/*超级链接元素*/
+#main_menu a, #main_menu a:hover{
+	color: #FFFFFF;
+	display: block;
+	padding: 5px;
+	text-decoration: none;
+	width: 150px;
+	border-top-right-radius: 2px;
+	border-top-left-radius: 2px;
+	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 10px;
+}
+/*子菜单*/
+#main_menu ul{
+	list-style: none;
+	position: absolute;
+	display: none;
+	padding-left: 0;
+}
+/*鼠标指针移动到顶级菜单项上时出现的所有子菜单项*/
+#main_menu li:hover ul{
+	display: block;
+}
+/*子菜单项*/
+#main_menu ul a{
+	color: #FFFF00;
+	box-shadow: 3px 3px 2px #888;
+}
+
+	</style>
+</head>
+<body>
+<ul id="main_menu">
+	<li class="top_menu">
+		<a href="#">产品</a>
+		<ul>
+			<li><a href="#">服装</a></li>
+			<li><a href="#">家具</a></li>
+			<li><a href="#">玩具</a></li>
+		</ul>
+	</li>
+	<li class="top_menu">
+		<a href="#">课程</a>
+		<ul>
+			<li><a href="#">英语</a></li>
+			<li><a href="#">美术</a></li>
+			<li><a href="#">语文</a></li>
+			<li><a href="#">其他</a></li>
+		</ul>
+	</li>
+	<li class="top_menu">
+		<a href="#">信息</a>
+		<ul>
+			<li><a href="#">关于我们</a></li>
+			<li><a href="#">联系我们</a></li>
+		</ul>
+	</li>
+</ul>
+</body>
+</html>

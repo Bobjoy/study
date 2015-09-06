@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>身份证格式化</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+	<input type="text" id="cardNo">
+</body>
+<script>
+/**
+ * 格式化身份证
+ */
+function formatCardNo(inputObj, event){
+	var val = inputObj.value, len = val.length;
+	var type = $(inputObj).data('type');
+	if(type == 'NI'){
+		val = val.replace(/[^\dXx]+/g, '');
+		if(len >= 7 && len < 16){
+			val = val.substr(0, 6) + ' ' + val.substring(6);
+		}else if(len >= 16 && len <= 18){
+			val = val.substr(0, 6) + ' ' + val.substr(6, 8) + ' ' + val.substring(14);
+		}else if(len > 18){
+			val = val.substr(0, 6) + ' ' + val.substr(6, 8) + ' ' + val.substr(14, 4);
+		}
+		inputObj.value = val;
+		changePosition(inputObj);
+	}
+}
+
+var chPosTimer = null;
+function changePosition(ipt){
+	clearTimeout(chPosTimer);
+	chPosTimer = setTimeout(function(){
+		ipt.selectionStart = 20;
+		//debug.innerHTML = ipt.selectionStart
+	}, 5);
+}
+
+/**
+ * 获取光标位置函数
+ */
+function getCursortPosition (ctrl) {
+    var CaretPos = 0;
+    if (document.selection) { // IE Support
+    	ctrl.focus();
+        var Sel = document.selection.createRange ();
+        Sel.moveStart ('character', -ctrl.value.length);
+        CaretPos = Sel.text.length;
+    } else if (ctrl.selectionStart || ctrl.selectionStart == '0') { // Firefox support
+        CaretPos = ctrl.selectionStart;
+    }
+    return (CaretPos);
+}
+
+/**
+ * 设置光标位置函数
+ */
+function setCaretPosition(ctrl, pos){
+    if(ctrl.setSelectionRange) {
+        ctrl.focus();
+        ctrl.setSelectionRange(pos,pos);
+    } else if (ctrl.createTextRange) {
+        var range = ctrl.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', pos);
+        range.moveStart('character', pos);
+        range.select();
+    }
+}
+</script>
+</html>
