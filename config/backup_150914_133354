@@ -1,0 +1,65 @@
+REGEDIT4
+
+; User: baofangliang
+[HKEY_CURRENT_USER\Environment]
+"ANDROID_SDK_HOME"="D:\\bfl\\android\\sdk"
+"COMPOSER_CACHE_DIR"="D:\\bfl\\php\\composer\\cache"
+"COMPOSER_HOME"="D:\\bfl\\php\\composer"
+"CURL_CA_BUNDLE"="D:\\bfl\\bin\\cacert.pem"
+"EXE4J_JAVA_HOME"="D:\\bfl\\java\\jdk1.7.0_60"
+"GIT_EDITOR"="EmEditor.exe //sp"
+"GIT_HOME"="D:\\bfl\\git\\Git"
+"GOPATH"="D:\\bfl\\go\\gopath"
+"GOROOT"="D:\\bfl\\go\\go"
+"JAVA_HOME"="D:\\bfl\\Java\\jdk1.7.0_60"
+"LANG"="zh_CN.UTF-8"
+"LC_ALL"="zh_CN.UTF-8"
+"M2_HOME"="D:\\bfl\\apache-maven-3.2.1"
+"MINGW_HOME"=hex(2):44,3A,5C,62,66,6C,5C,4D,69,6E,47,57,00
+"NODE_PATH"="D:\\bfl\\nodejs;D:\\bfl\\nodejs\\node_modules;D:\\bfl\\phantomjs"
+"PATH"="D:\\bfl\\Elixir\\bin;D:\\bfl\\JXcore;D:\\bfl\\winobjc\\bin;C:\\Users\\win7\\.k\\bin;D:\\bfl\\Vim\\vim74;D:\\Oracle\\product\\10.2.0\\db_1\\bin;D:\\bfl\\Vagrant\\bin;D:\\bfl\\git\\Git;D:\\bfl\\Java\\jdk1.7.0_60\\bin;D:\\bfl\\nodejs;D:\\bfl\\nodejs\\node_modules;D:\\bfl\\phantomjs;D:\\bfl\\ruby\\RailsInstaller\\Ruby2.0.0\\bin;D:\\bfl\\Python\\Python27;D:\\bfl\\Python\\Python27\\Scripts;D:\\bfl\\wamp\\bin\\php\\php5.4.12;D:\\bfl\\php\\pear;D:\\Oracle\\VirtualBox\\;D:\\bfl\\java\\spring-roo-1.3.1.RC1\\bootstrap;D:\\bfl\\apache-maven-3.2.1\\bin;D:\\bfl\\SublimeText3;D:\\bfl\\atom-shell;D:\\bfl\\android\\sdk\\android-sdk\\platform-tools;D:\\bfl\\go\\go\\bin;D:\\bfl\\go\\gopath\\bin;D:\\bfl\\php\\composer;D:\\bfl\\LLVM\\bin;D:\\bfl\\TDM-GCC-64\\bin;D:\\bfl\\bin;D:\\bfl\\QuickStart\\command;D:\\bfl\\EmEditor;D:\\bfl\\Haxe\\haxe-3.1.3;D:\\bfl\\hg\\Mercurial;D:\\bfl\\wamp\\bin\\php\\php5.4.12;D:\\bfl\\git\\TortoiseGit\\bin;D:\\bfl\\ffmpeg\\bin;D:\\bfl\\Boot2Docker;C:\\Users\\win7\\AppData\\Local\\Code\\bin"
+"PERL5LIB"=hex(2):44,3A,5C,4F,72,61,63,6C,65,5C,70,72,6F,64,75,63,74,5C,31,30,2E,32,2E,30,5C,64,62,5F,31,5C,70,65,72,6C,5C,35,2E,38,2E,33,5C,6C,69,62,5C,4D,53,57,69,6E,33,32,2D,78,38,36,2D,6D,75,6C,74,69,2D,74,68,72,65,61,64,3B,44,3A,5C,4F,72,61,63,6C,65,5C,70,72,6F,64,75,63,74,5C,31,30,2E,32,2E,30,5C,64,62,5F,31,5C,70,65,72,6C,5C,35,2E,38,2E,33,5C,6C,69,62,3B,44,3A,5C,4F,72,61,63,6C,65,5C,70,72,6F,64,75,63,74,5C,31,30,2E,32,2E,30,5C,64,62,5F,31,5C,70,65,72,6C,5C,35,2E,38,2E,33,5C,6C,69,62,5C,4D,53,57,69,6E,33,32,2D,78,38,36,2D,6D,75,6C,74,69,2D,74,68,72,65,61,64,3B,44,3A,5C,4F,72,61,63,6C,65,5C,70,72,6F,64,75,63,74,5C,31,30,2E,32,2E,30,5C,64,62,5F,31,5C,70,65,72,6C,5C,73,69,74,65,5C,35,2E,38,2E,33,3B,44,3A,5C,4F,72,61,63,6C,65,5C,70,72,6F,64,75,63,74,5C,31,30,2E,32,2E,30,5C,64,62,5F,31,5C,70,65,72,6C,5C,73,69,74,65,5C,35,2E,38,2E,33,5C,6C,69,62,3B,44,3A,5C,4F,72,61,63,6C,65,5C,70,72,6F,64,75,63,74,5C,31,30,2E,32,2E,30,5C,64,62,5F,31,5C,73,79,73,6D,61,6E,5C,61,64,6D,69,6E,5C,73,63,72,69,70,74,73,3B,00
+"PHP_HOME"="D:\\bfl\\wamp\\bin\\php\\php5.4.12"
+"PHP_PEAR_BIN_DIR"="D:\\bfl\\php\\pear"
+"PHP_PEAR_DATA_DIR"="D:\\bfl\\php\\pear\\data"
+"PHP_PEAR_DOC_DIR"="D:\\bfl\\php\\pear\\docs"
+"PHP_PEAR_INSTALL_DIR"="D:\\bfl\\php\\pear\\pear"
+"PHP_PEAR_PHP_BIN"="D:\\bfl\\wamp\\bin\\php\\php5.4.12\\php.exe"
+"PHP_PEAR_SYSCONF_DIR"="D:\\bfl\\php\\pear"
+"PHP_PEAR_TEST_DIR"="D:\\bfl\\php\\pear\\tests"
+"PYTHON_HOME"="D:\\bfl\\Python\\Python27"
+"RAILS_INSTAL"="D:\\bfl\\ruby\\RailsInstaller"
+"ROO_HOME"="D:\\bfl\\java\\spring-roo-1.3.1.RC1"
+"TEMP"=hex(2):25,55,53,45,52,50,52,4F,46,49,4C,45,25,5C,41,70,70,44,61,74,61,5C,4C,6F,63,61,6C,5C,54,65,6D,70,00
+"TMP"=hex(2):25,55,53,45,52,50,52,4F,46,49,4C,45,25,5C,41,70,70,44,61,74,61,5C,4C,6F,63,61,6C,5C,54,65,6D,70,00
+"VAGRANT_HOME"="E:\\Vagrant\\.vagrant.d"
+"VBOX_MSI_INSTALL_PATH"="D:\\Oracle\\VirtualBox\\"
+"VG"="E:\\Vagrant"
+"WS"="E:\\BFL\\workspaces"
+
+; System variables
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment]
+"asl.log"="Destination=file"
+"ComSpec"=hex(2):25,53,79,73,74,65,6D,52,6F,6F,74,25,5C,73,79,73,74,65,6D,33,32,5C,63,6D,64,2E,65,78,65,00
+"DEFLOGDIR"="C:\\ProgramData\\McAfee\\DesktopProtection"
+"FP_NO_HOST_CHECK"="NO"
+"KRE_HOME"="%USERPROFILE%\\.k"
+"NUMBER_OF_PROCESSORS"="2"
+"OS"="Windows_NT"
+"Path"=hex(2):43,3A,5C,57,69,6E,64,6F,77,73,5C,73,79,73,74,65,6D,33,32,3B,43,3A,5C,57,69,6E,64,6F,77,73,3B,43,3A,5C,57,69,6E,64,6F,77,73,5C,53,79,73,74,65,6D,33,32,5C,57,62,65,6D,3B,43,3A,5C,57,69,6E,64,6F,77,73,5C,53,79,73,74,65,6D,33,32,5C,57,69,6E,64,6F,77,73,50,6F,77,65,72,53,68,65,6C,6C,5C,76,31,2E,30,5C,3B,43,3A,5C,50,72,6F,67,72,61,6D,20,46,69,6C,65,73,20,28,78,38,36,29,5C,57,69,6E,64,6F,77,73,20,4B,69,74,73,5C,38,2E,31,5C,57,69,6E,64,6F,77,73,20,50,65,72,66,6F,72,6D,61,6E,63,65,20,54,6F,6F,6C,6B,69,74,5C,3B,43,3A,5C,50,72,6F,67,72,61,6D,20,46,69,6C,65,73,5C,4D,69,63,72,6F,73,6F,66,74,20,53,51,4C,20,53,65,72,76,65,72,5C,31,31,30,5C,54,6F,6F,6C,73,5C,42,69,6E,6E,5C,3B,43,3A,5C,50,72,6F,67,72,61,6D,20,46,69,6C,65,73,20,28,78,38,36,29,5C,4D,69,63,72,6F,73,6F,66,74,20,53,44,4B,73,5C,54,79,70,65,53,63,72,69,70,74,5C,31,2E,30,5C,3B,43,3A,5C,50,72,6F,67,72,61,6D,20,46,69,6C,65,73,5C,4D,69,63,72,6F,73,6F,66,74,20,53,51,4C,20,53,65,72,76,65,72,5C,31,32,30,5C,54,6F,6F,6C,73,5C,42,69,6E,6E,5C,3B,43,3A,5C,50,72,6F,67,72,61,6D,20,46,69,6C,65,73,20,28,78,38,36,29,5C,4D,69,63,72,6F,73,6F,66,74,20,56,69,73,75,61,6C,20,53,74,75,64,69,6F,20,31,32,2E,30,5C,56,43,00
+"PATHEXT"=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY"
+"PROCESSOR_ARCHITECTURE"="AMD64"
+"PROCESSOR_IDENTIFIER"="Intel64 Family 6 Model 42 Stepping 7, GenuineIntel"
+"PROCESSOR_LEVEL"="6"
+"PROCESSOR_REVISION"="2a07"
+"PSModulePath"=hex(2):25,53,79,73,74,65,6D,52,6F,6F,74,25,5C,73,79,73,74,65,6D,33,32,5C,57,69,6E,64,6F,77,73,50,6F,77,65,72,53,68,65,6C,6C,5C,76,31,2E,30,5C,4D,6F,64,75,6C,65,73,5C,00
+"TEMP"=hex(2):25,53,79,73,74,65,6D,52,6F,6F,74,25,5C,54,45,4D,50,00
+"TMP"=hex(2):25,53,79,73,74,65,6D,52,6F,6F,74,25,5C,54,45,4D,50,00
+"USERNAME"="SYSTEM"
+"VBOX_MSI_INSTALL_PATH"="D:\\Oracle\\VirtualBox\\"
+"VS110COMNTOOLS"="C:\\Program Files (x86)\\Microsoft Visual Studio 11.0\\Common7\\Tools\\"
+"VS120COMNTOOLS"="C:\\Program Files (x86)\\Microsoft Visual Studio 12.0\\Common7\\Tools\\"
+"VS90COMNTOOLS"=hex(2):25,56,53,31,32,30,43,4F,4D,4E,54,4F,4F,4C,53,25,00
+"VSEDEFLOGDIR"="C:\\ProgramData\\McAfee\\DesktopProtection"
+"windir"=hex(2):25,53,79,73,74,65,6D,52,6F,6F,74,25,00
+"windows_tracing_flags"="3"
