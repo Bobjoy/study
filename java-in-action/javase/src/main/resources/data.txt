@@ -1,0 +1,17 @@
+Mohamed Taman
+
+A Systems Architect & design supervisor, Adopts, JCP, JCP Executive Committee member,
+ 
+JSR 358, 354, 364, & 363 EG, MoroccoJUG member, EGJUG leader, 
+
+Oracle Egypt Architects Club board member, speaks java, love mobile, international speaker. 
+
+Won Duke’s choice 2014 awards, and JCP adopt 2013 awards.
+
+More on http://about.me/mohamedtaman
+
+你可以使用多种数据类型。在计算平均值的时候，我想获得一个 doule 类型的值。所以，我创建了一个 OptionalDouble 类型的变量。
+
+注意，还存在 Optional Int 和 Optional Long。我将平均值命名为 avg，使用的代码与求和的代码也是一致的，开始用 people.stream()。
+
+在这个基础上，再次使用 mapToInt()。并且传递了相同的 lambda 表达式，最后，调用 average 方法。
