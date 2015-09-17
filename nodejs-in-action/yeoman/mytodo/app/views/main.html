@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>My todos</h2>
+  <!-- Todos input -->
+  <form role="form" ng-submit="addTodo()">
+    <div class="row">
+      <div class="input-group">
+        <input type="text" ng-model="todo" placeholder="What needs to be done?" class="form-control"/>
+        <span class="input-group-btn">
+        	<input type="submit" value="Add" class="btn btn-primary"/>
+        </span>
+      </div>
+    </div>
+  </form>
+  <!-- Todos list -->
+  <div ui-sortable ng-model="todos">
+	  <p class="form-group totos-list" ng-repeat="todo in todos">
+	  	<input type="text" ng-model="todo" class="form-control todo-input" />
+	  	<span class="input-group-btn">
+	  		<button class="btn btn-danger btn-del" ng-click="removeTodo($index)" aria-label="Remove">X</button>
+	  	</span>
+	  </p>
+  </div>
+</div>
