@@ -14,8 +14,6 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <!-- remote debug -->
-    <script src="http://172.16.1.112:8080/target/target-script-min.js#anonymous"></script>
   </head>
   <body ng-app="mytodoApp">
     <!--[if lte IE 8]>
@@ -78,6 +76,7 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
@@ -93,5 +92,23 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <!-- endbuild -->
+
+<script src="scripts/jweixin-1.1.0.js"></script>
+<script>
+  wx.config({
+      debug: false,
+      appId: 'wxc53d0d6fe5bf3243',
+      timestamp: 1442543963,
+      nonceStr: 'j1tiFq1PQq0mvTSy',
+      signature: 'f1923c9e86a70f56588ddea624d97f2da40df755',
+      jsApiList: [
+        'chooseImage',
+        'previewImage',
+        'uploadImage',
+        'downloadImage'
+      ]
+  });
+</script>
+<script src="scripts/demo.js"></script>
 </body>
 </html>
