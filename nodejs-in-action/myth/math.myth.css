@@ -1,0 +1,7 @@
+:root {
+	--purple: #847AD1;
+	--large: 10px;
+}
+pre {
+	margin: calc(var(--large) * 2);
+}
