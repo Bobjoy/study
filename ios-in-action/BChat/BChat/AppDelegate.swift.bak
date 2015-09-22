@@ -1,0 +1,554 @@
+//
+//  AppDelegate.swift
+//  BChat
+//
+//  Created by Vetech on 15/6/17.
+//  Copyright (c) 2015年 BFL. All rights reserved.
+//
+
+import UIKit
+
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate, UIAlertViewDelegate, XMPPStreamDelegate, XMPPRosterDelegate, XMPPReconnectDelegate {
+    
+    typealias BCompletionBlock = (Bool, String?) -> ()
+
+    var window: UIWindow?
+    
+    //MARK: - Public Properties
+    
+    // xmpp基础服务类
+    var xmppStream: XMPPStream!
+    var isRegistration = false
+    var isLogining = false
+    // 消息代理
+    var messageDelegate: BMessageDelegate?
+    // 聊天代理
+    var chatDelegate: BChatDelegate?
+    // 状态代理
+    var stateDelegate: BStateDelegate?
+    
+    //MARK: - Private Properties
+    
+    var mJid: String?
+    var mPassword: String?
+    var mServer: String?
+    var mIsOpen: Bool?
+    
+    var mCompletionBlock: BCompletionBlock?
+    
+    // 如果失去连接,自动重连
+    var mXmppReconnect: XMPPReconnect!
+    // 好友列表类
+    var mXmppRoster: XMPPRoster!
+    // 好友列表（用户账号）在core data中的操作类
+    var mXmppRosterStorage: XMPPRosterCoreDataStorage!
+    // 好友名片（昵称，签名，性别，年龄等信息）在core data中的操作
+    var mXmppvCardStorage: XMPPvCardCoreDataStorage!
+    // 好友名片实体类，从数据库里取出来的都是它
+    var mXmppvCardTempModule: XMPPvCardTempModule!
+    // 好友头像
+    var mXmppvCardAvatarModule: XMPPvCardAvatarModule!
+    // 提供多用户聊天支持
+    var mXmppRoom: XMPPRoom!
+    
+    //var mXmppCapailitiesStorage: XMPPCapabilitiesCoreDataStorage!
+    //var mXmppCapabilities: XMPPCapabilities!
+    
+    var mXmppMessageStorage: XMPPMessageArchivingCoreDataStorage!
+    var mXmppMessageArchiving: XMPPMessageArchiving!
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        self.setupStream()
+        return true
+    }
+
+    func applicationWillResignActive(application: UIApplication) {
+        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
+        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        //self.disconnect()
+    }
+
+    func applicationDidEnterBackground(application: UIApplication) {
+        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
+        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    }
+
+    func applicationWillEnterForeground(application: UIApplication) {
+        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    }
+
+    func applicationDidBecomeActive(application: UIApplication) {
+        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        //self.connect()
+    }
+
+    func applicationWillTerminate(application: UIApplication) {
+        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        //self.disconnect()
+    }
+    
+    //MARK: - 初始化XMPPStream
+    func setupStream() {
+        xmppStream = XMPPStream()
+        // 设置此行为YES,表示允许socket在后台运行
+        // 在模拟器上是不支持在后台运行的
+        #if !TARGET_IPHONE_SIMULATOR
+            xmppStream.enableBackgroundingOnSocket = true
+        #endif
+        
+        // XMPPReconnect模块会监控意外断开连接并自动重连
+        mXmppReconnect = XMPPReconnect()
+        
+        // 配置花名册并配置本地花名册储存
+        mXmppRosterStorage = XMPPRosterCoreDataStorage()
+        mXmppRoster = XMPPRoster(rosterStorage: mXmppRosterStorage)
+        mXmppRoster.autoAcceptKnownPresenceSubscriptionRequests = true
+        mXmppRoster.autoFetchRoster = true
+        
+        // 消息相关
+        mXmppMessageStorage = XMPPMessageArchivingCoreDataStorage()
+        mXmppMessageArchiving = XMPPMessageArchiving(messageArchivingStorage: mXmppMessageStorage)
+        mXmppMessageArchiving.clientSideMessageArchivingOnly = true
+        
+        // 配置vCard存储支持，vCard模块结合vCardTempModule可下载用户Avatar
+        mXmppvCardStorage = XMPPvCardCoreDataStorage()
+        mXmppvCardTempModule = XMPPvCardTempModule(withvCardStorage: mXmppvCardStorage)
+        mXmppvCardAvatarModule = XMPPvCardAvatarModule(withvCardTempModule: mXmppvCardTempModule)
+        
+        // XMPP特性模块配置，用于处理复杂的哈希协议等
+        //mXmppCapailitiesStorage = XMPPCapabilitiesCoreDataStorage()
+        //mXmppCapabilities = XMPPCapabilities(capabilitiesStorage: mXmppCapailitiesStorage)
+        //mXmppCapabilities.autoFetchHashedCapabilities = true
+        //mXmppCapabilities.autoFetchNonHashedCapabilities = false
+        
+        // 激活XMPP stream
+        mXmppReconnect.activate(xmppStream)
+        mXmppRoster.activate(xmppStream)
+        mXmppMessageArchiving.activate(xmppStream)
+        mXmppvCardTempModule.activate(xmppStream)
+        mXmppvCardAvatarModule.activate(xmppStream)
+        //mXmppCapabilities.activate(xmppStream)
+        
+        // 添加代理
+        xmppStream.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        mXmppRoster.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+        mXmppMessageArchiving.addDelegate(self, delegateQueue: dispatch_get_main_queue())
+    } // 初始化XMPPStream END
+    
+    //MARK: - XMPPStreamDelegate
+    
+    /*
+     * 将要连接服务器
+     */
+    func xmppStreamWillConnect(sender: XMPPStream!) {
+        println("xmppStreamWillConnect")
+    }
+    
+    /**
+    *  连接服务器
+    */
+    func xmppStreamDidConnect(sender: XMPPStream!) {
+        println("xmppStreamDidConnect")
+        
+        mIsOpen = true
+        var error: NSError?
+        // 验证密码
+        if ( !xmppStream.authenticateWithPassword(mPassword, error: &error) ) {
+            println("error authenticate: \(error!.description)")
+        }
+    }
+    
+    /**
+    *  注册
+    */
+    func xmppStreamDidRegister(sender: XMPPStream!) {
+        println("xmppStreamDidRegister")
+        
+        var error: NSError?
+        if ( !xmppStream.authenticateWithPassword(mPassword, error: &error) ) {
+            println("error authenticate: \(error!.description)")
+        }
+    }
+    
+    /**
+    *  注册失败
+    */
+    func xmppStream(sender: XMPPStream!, didNotRegister error: DDXMLElement!) {
+        NSLog("注册失败：\(error)")
+        
+        var query: DDXMLElement = error.elementForName("query")
+        var username: DDXMLElement = query.elementForName("username")
+        var password: DDXMLElement = query.elementForName("password")
+        
+        var errorNode: DDXMLElement = error.elementForName("error")
+        var code = errorNode.attributeIntValueForName("code")
+        NSLog("\(username.stringValue()) \(password.stringValue())")
+        if mCompletionBlock != nil && isRegistration && isLogining {
+            mCompletionBlock!(false, "\(code)")
+        }
+        
+        isRegistration = false
+        
+    }
+    
+    /**
+    *  验证通过
+    */
+    func xmppStreamDidAuthenticate(sender: XMPPStream!) {
+        println("xmppStreamDidAuthenticate")
+        
+        //self.goOnline()
+        let presence = XMPPPresence()
+        xmppStream.sendElement(presence)
+    }
+    
+    func xmppStream(sender: XMPPStream!, didNotAuthenticate error: DDXMLElement!) {
+        println("didNotAuthenticate: \(error.description())")
+        
+        if isRegistration {
+            self.registerWithJid(mJid!)
+            return
+        }
+        
+        if isLogining {
+            self.loginWithJid(mJid!)
+            return
+        }
+        
+        isLogining = false
+        NSLog("didNotAuthenticate: 密码校验失败，登录不成功，原因是：\(error.XMLString())")
+    }
+    
+    func xmppStream(sender: XMPPStream!, alternativeResourceForConflictingResource conflictingResource: String!) -> String! {
+        println("alternativeResourceForConflictingResource: \(conflictingResource)")
+        
+        return "BChat"
+    }
+    
+    func xmppStream(sender: XMPPStream!, didReceiveIQ iq: XMPPIQ!) -> Bool {
+        println("didReceiveIQ: \(iq.description())")
+        
+        return true
+    }
+    
+    /**
+    *  收到好友消息
+    */
+    func xmppStream(sender: XMPPStream!, didReceiveMessage message: XMPPMessage!) {
+        println("didReceiveMessage: \(message.description())")
+        
+        // 聊天消息
+        if ( message.isChatMessage() ) {
+            var msg = BJabberMessage(message: message)
+            // 消息委托
+            messageDelegate?.newMessageReceived(msg)
+        }
+    }
+    
+    /**
+    *  收到好友状态
+    */
+    func xmppStream(sender: XMPPStream!, didReceivePresence presence: XMPPPresence!) {
+        println("didReceivePresence: \(presence.description())")
+        
+//        // 当前用户ID
+//        let me = sender.myJID.user
+//        // 好友ID
+//        let user = presence.from().user
+//        // 用户所在的域
+//        let domain = presence.from().domain
+//        // 状态类型
+//        let pType = presence.type()
+//        // 如果状态不是自己的
+//        if ( user != me ) {
+//            var state = BUserState()
+//            state.userId = "\(user)@\(domain)"
+//            // 上线
+//            if ( pType == Constant.msgAvailable ) {
+//                state.isOn = true
+//                stateDelegate?.isOn(state)
+//            }
+//            // 下线
+//            else if ( pType == Constant.msgUnavailable ) {
+//                state.isOn = false
+//                stateDelegate?.isOff(state)
+//            }
+//        }
+        
+        if ( presence.status() != nil ) {
+            chatDelegate?.friendStatusChange?(self, presence: presence)
+        }
+        
+        
+        
+    }
+    
+    func xmppStream(sender: XMPPStream!, didReceiveError error: DDXMLElement!) {
+        println("didReceiveError: \(error.description())")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didSendIQ iq: XMPPIQ!) {
+        println("didSendIQ: \(iq.description())")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didSendMessage message: XMPPMessage!) {
+        println("didSendMessage: \(message.description())")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didSendPresence presence: XMPPPresence!) {
+        println("didSendPresence: \(presence.description())")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didFailToSendIQ iq: XMPPIQ!, error: NSError!) {
+        println("didFailToSendIQ: \(error.description)")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didFailToSendMessage message: XMPPMessage!, error: NSError!) {
+        println("didFailToSendMessage: \(error.description)")
+    }
+    
+    func xmppStream(sender: XMPPStream!, didFailToSendPresence presence: XMPPPresence!, error: NSError!) {
+        println("didFailToSendPresence: \(error.description)")
+    }
+    
+    func xmppStreamWasToldToDisconnect(sender: XMPPStream!) {
+        println("xmppSteamWasToldToDisconnect")
+    }
+    
+    func xmppStreamConnectDidTimeout(sender: XMPPStream!) {
+        println("xmppStreamConnectDidTimeout")
+    }
+    
+    func xmppStreamDidDisconnect(sender: XMPPStream!, withError error: NSError!) {
+        println("xmppStreamDidDisconnect")
+    }
+    // XMPPStreamDelegate End
+    
+    //MARK: - XMPPRosterDelegate
+    
+    func xmppRoster(sender: XMPPRoster!, didReceivePresenceSubscriptionRequest presence: XMPPPresence!) {
+        println("didReceivePresenceSubscriptionRequest")
+        
+        let alertView = UIAlertView(title: presence.fromStr(), message: "add", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Yes")
+        alertView.tag = 100
+        alertView.show()
+    }
+    
+    //MARK: - XMPPReconnectDelegate
+    
+    func xmppReconnect(sender: XMPPReconnect!, didDetectAccidentalDisconnect connectionFlags: SCNetworkConnectionFlags) {
+        println("didDetectAccidentalDisconnect")
+    }
+    
+    func xmppReconnect(sender: XMPPReconnect!, shouldAttemptAutoReconnect connectionFlags: SCNetworkConnectionFlags) -> Bool {
+        println("shouldAttemptAutoReconnect")
+        
+        return true
+    }
+    
+    //MARK: - UIAlertViewDelegate
+    
+    func alertView(alertView: UIAlertView, clickedButtonAtIndex buttonIndex: Int) {
+        if ( alertView.tag == 100 && buttonIndex == 1) {
+            let jid = XMPPJID.jidWithString(alertView.title)
+            mXmppRoster.acceptPresenceSubscriptionRequestFrom(jid, andAddToRoster: true)
+            //mXmppRoster.rejectPresenceSubscriptionRequestFrom(jid)
+        }
+    }
+    
+    //MARK: - My Method
+    
+    func showAlertView(message: String?) {
+        UIAlertView(title: nil, message: message, delegate: self, cancelButtonTitle: "ok").show()
+    }
+    
+    func registerWithJid(jidString: String?, password: String?, completion: BCompletionBlock?) {
+        isLogining = false
+        
+        if isRegistration {
+            return
+        }
+        
+        if jidString == nil || password == nil {
+            if completion != nil {
+                completion!(false, "用户名或者密码不能为空")
+            }
+            return
+        }
+        
+        mJid = jidString!
+        mPassword = password!
+        mCompletionBlock = completion
+        
+        isRegistration = true
+        if xmppStream.isConnected() {
+            if self.connect() {
+                isRegistration = false
+                
+                if completion != nil {
+                    completion!(false, "连接服务器失败")
+                }
+            }
+            return
+        }
+        
+    }
+    
+    func registerWithJid(var jidString: String) {
+        if !jidString.hasSuffix(mServer!) {
+            jidString = "\(jidString)@\(mServer)"
+        }
+        
+        xmppStream.myJID = XMPPJID.jidWithString(jidString)
+        
+        // 设置服务器
+        xmppStream.hostName = mServer
+        
+        var error: NSError?
+        isRegistration = true
+        if xmppStream.registerWithPassword(mPassword, error: &error) {
+            NSLog("注册账号失败：\(error?.description)")
+            isRegistration = false
+            
+            if mCompletionBlock != nil {
+                mCompletionBlock!(false, error?.description)
+            }
+        }
+    }
+    
+    func loginWithJid(jidString: String?, password: String?, completion: BCompletionBlock?) {
+        isRegistration = false
+        
+        if xmppStream.isAuthenticated() {
+            if completion != nil {
+                completion!(true, nil)
+            }
+            return
+        }
+        
+        if isLogining {
+            return
+        }
+        
+        if jidString == nil || password == nil {
+            if completion != nil {
+                completion!(false, "用户名或者密码错误")
+            }
+            return
+        }
+        
+        mJid = jidString
+        mPassword = password
+        mCompletionBlock = completion
+        isLogining = true
+        
+        if !xmppStream.isConnected() {
+            if self.connect() {
+                isLogining = false
+                
+                if completion != nil {
+                    completion!(false, "连接服务器失败")
+                }
+            }
+            return
+        }
+        
+        self.loginWithJid(jidString!)
+    }
+    
+    func loginWithJid(var jidString: String) {
+        if jidString.hasSuffix(mServer!) {
+            jidString = "\(jidString)@\(mServer)"
+        }
+        xmppStream.myJID = XMPPJID.jidWithString(jidString)
+        
+        // 设置服务器
+        xmppStream.hostName = mServer
+        
+        var error: NSError?
+        isLogining = true
+        if xmppStream.authenticateWithPassword(mPassword, error: &error) {
+            NSLog("登录失败：\(error?.description)")
+            isLogining = false
+            if mCompletionBlock != nil {
+                mCompletionBlock!(false, error?.description)
+            }
+        }
+    }
+    
+    
+    
+    func connect() -> Bool {
+        //self.setupStream()
+        
+        // 从本地获取
+        var defaults = NSUserDefaults.standardUserDefaults()
+        var userId = defaults.stringForKey(Constant.udUserId)
+        var pass = defaults.stringForKey(Constant.udPass)
+        var server = defaults.stringForKey(Constant.udServer)
+        
+        //        if !xmppStream.isDisconnected() {
+        //            return true
+        //        }
+        
+        if userId == nil || mPassword == nil {
+            return false
+        }
+        
+        mJid = userId
+        mPassword = pass
+        mServer = server
+        // 设置用户
+        xmppStream.myJID = XMPPJID.jidWithString(mJid)
+        // 设置服务器
+        xmppStream.hostName = mServer!
+        
+        // 连接服务器
+        var error: NSError?
+        if !xmppStream.connectWithTimeout(XMPPStreamTimeoutNone, error: &error) {
+            println("cant connect \(server!)")
+            return false
+        }
+        
+        return true
+    }
+    
+    // 发送在线状态
+    func goOnline() {
+        // 正在注册
+        if isRegistration {
+            self.registerWithJid(mJid!)
+            return
+        }
+        
+        // 正在登录
+        if mCompletionBlock != nil && isLogining {
+            let presence = XMPPPresence()
+            xmppStream.sendElement(presence)
+        }
+        
+        NSLog("密码校验成功，用户将要上线")
+        isLogining = false
+        
+    }
+    
+    // 发送下线状态
+    func goOffline() {
+        var presence = XMPPPresence(type: Constant.msgUnavailable)
+        xmppStream.sendElement(presence)
+    }
+    
+    /**
+    *  断开连接
+    */
+    func disconnect() {
+        if ( xmppStream != nil && xmppStream.isConnected() ) {
+            self.goOffline()
+            xmppStream.disconnect()
+        }
+    }
+    
+}
+
