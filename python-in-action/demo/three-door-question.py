@@ -29,7 +29,7 @@ def change():
         # 随机生成0, 1, 2作为本回合选择想，分别对应第0瓶汽水，第1瓶汽水，第2瓶汽水
         choose_num = random.randint(0, 2)
         # 遍历问题，j为门（汽水）的下标，gate为具体门的值0或1（0非冰，1冰汽水）
-        for gate,j in each:
+        for gate in each:
             # 已选择的忽略
             if j == choose_num:
                 continue
