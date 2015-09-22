@@ -1,0 +1,9 @@
+site_name: MkLorum
+site_url: http://www.mkdocs.org/
+site_author: Bobjoy
+repo_url: https://github.com/bobjoy/study
+repo_name: 'GitHub'
+page: 
+- Home: index.md
+- About: about.md
+theme: readthedocs

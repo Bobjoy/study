@@ -1,0 +1,18 @@
+{
+  "name": "sequelizejs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "pg": "^4.4.2",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.9.0",
+    "sqlite3": "^3.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
