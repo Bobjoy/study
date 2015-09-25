@@ -1,4 +1,4 @@
-/// <reference path="../.tsd/backbone/backbone.d.ts" />
+/// <reference path="../../.tsd/backbone/backbone.d.ts" />
 
 'use strict';
 

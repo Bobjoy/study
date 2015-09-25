@@ -62,7 +62,7 @@ console.log(myViewInstance.myViewMethod()); //logs '...'
 ```javascript
 //继承一个view
  
-var MyView = new Backbone.View.extend({
+var MyView = Backbone.View.extend({
  
 model: {}, 
 events: {} || function(){return {}}
@@ -428,9 +428,9 @@ var MyView = Backbone.View.extend({
     el:'#myView',
     initialize:function(){this.render()},
     render:function(){
-        var compiledTemplate = _.template(template, data); //编译模板
+        var compiledTemplate = _.template(template); //编译模板
         //在Backbone "el"中加载编译的HTML
-        this.$el.html(compiledTemplate);
+        this.$el.html(compiledTemplate(data));
     }
 });
  
