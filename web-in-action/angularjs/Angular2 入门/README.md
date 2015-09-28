@@ -1,3 +1,10 @@
+> 
+Angular2是面向未来的前端web框架，与1.x版本相比，Angular2相当地颠覆。
+> 
+学习地址：http://www.hubwiz.com/course/5599d367a164dd0d75929c76/
+
+# 第一课：快速上手
+
 ## Why Angular2
 
 > Angular1.x显然非常成功，那么，为什么要剧烈地转向Angular2？
@@ -186,3 +193,146 @@ System.config({
 ```
 
 修改示例代码中的EzApp组件，不用注解实现同样的功能。
+
+## 小结
+
+如果你了解一点Angular1.x的`bootstrap`，可能隐约会感受到Angular2中`bootstrap`的一些 变化 - 我指的并非代码形式上的变化。
+
+### 以组件为核心
+
+在Angular1.x中，bootstrap是围绕`DOM元素`展开的，无论你使用ng-app还是手动执行`bootstrap()` 函数，自举过程是建立在DOM之上的。
+
+而在Angular2中，bootstrap是围绕`组件`开始的，你定义一个组件，然后启动它。如果没有一个组件， 你甚至都没有办法使用Angular2！
+
+### 支持多种渲染引擎
+
+以`组件`而非`DOM`为核心，意味着Angular2在内核隔离了对DOM的依赖 - DOM仅仅作为一种`可选`的渲染引擎存在：
+
+![render-arch](http://7xkexv.dl1.z0.glb.clouddn.com/15-9-28/render-arch.jpg)
+
+上面的图中，`DOM Render`已经实现，`Server Render`正在测试，`iOS Render`和`Android Render` 是可预料的特性，虽然我们看不到时间表。
+
+这有点像`React`了。
+
+
+# 第二课：组件开发 - 模板语法
+
+## 最简单的模板
+
+组件的`View注解`用来声明组件的`外观`，它最重要的属性就是`template` - 模板。 Angular2的模板是`兼容`HTML语法的，这意味着你可以使用任何标准的HTML标签编写 组件模板。
+
+所以，在最简单的情况下，一个Angular2组件的模板由`标准的HTML元素`构成，看起来就是 一段HTML码流。Angular2将`原封不同`地渲染这段模板：
+
+![html-template](http://7xkexv.dl1.z0.glb.clouddn.com/15-9-28/html-template.jpg)
+
+有两种方法为组件指定渲染模板：
+
+### 1. 内联模板
+
+可以使用组件的`View注解`中的`template`属性直接指定`内联模板`：
+
+```javascript
+@View({
+    template : `<h1>hello</h1>
+                <div>...</div>`
+})
+```
+
+在ES6中，使用一对`符号就可以定义多行字符串，这使得编写内联的模板轻松多了。
+
+### 2. 外部模板
+
+也可以将模板写入一个单独的文件：
+
+```javascript
+<!--ezcomp-tpl.html-->
+<h1>hello</h1>
+<div>...</div>
+```
+
+然后在定义组件时，使用`templateUrl`引用`外部模板`：
+
+```javascript
+@View({
+    templateUrl : "ezcomp-tpl.html"
+})
+```
+
+### 练习
+
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>template - standard HTML</title>
+    <script type="text/javascript" src="lib/system@0.16.11.js"></script>
+    <script type="text/javascript" src="lib/angular2.dev.js"></script>
+    <script type="text/javascript" src="lib/system.config.js"></script>
+</head>
+<body>
+	<ez-app></ez-app>
+    <script type="module">
+    	import {Component,View,bootstrap} from "angular2/angular2";
+        
+        @Component({selector : "ez-app"})
+        @View({
+        	template : `
+            	<h1>Hello,Angular2</h1>
+                <p>
+                	使用ES6开发Angular2应用的一个好处就是，可以不用拼接模板字符串了。
+                </p>
+                <ul>
+                	<li>在模板中可以使用任何标准的HTML元素</li>
+                    <li>如果模板定义在单独的文件里，可以使用templateUrl引入</li>
+                </ul>
+            `
+        })
+        class EzApp{}
+        
+        bootstrap(EzApp);
+    </script>
+</body>
+</html>
+```
+
+在示例的模板中，增加一个输入文本框和一个按钮！
+
+
+# 第三课：组件开发 - 模板的逻辑控制
+
+directives - 使用组件
+在Angular2中，一个组件的模板内除了可以使用标准的HTML元素，也可以使用自定义的组件！
+
+这是相当重要的特性，意味着Angular2将无偏差地对待标准的HTML元素和你自己定义的组件。这样， 你可以建立自己的领域建模语言了，这使得渲染模板和视图模型的对齐更加容易，也使得模板的语义性 更强：
+
+![component-template](http://7xkexv.dl1.z0.glb.clouddn.com/15-9-28/component-template.jpg)
+
+声明要在模板中使用的组件
+
+不过，在使用自定义组件之前，必需在组件的ViewAnnotation中通过directives属性声明这个组件：
+
+@View({
+    directives : [EzComp],
+    template : "<ez-comp></ez-comp>"
+})
+你应该注意到了，directives属性的值是一个数组，这意味着，你需要在这里声明所有你需要在模板 中使用的自定义组件。
+
+修改示例代码：
+1. 增加一个EzLogo组件
+2. 在EzCard组件的模板中使用这个组件
+
+
+# 第三课：组件开发 - 为模板应用样式
+
+
+# 第三课：组件开发 - 属性与事件
+
+
+# 第三课：组件开发 - 表单输入
+
+
+# 第三课：组件开发 - 调用服务
+
+
+# 第三课：组件路由 - 原理与应用
