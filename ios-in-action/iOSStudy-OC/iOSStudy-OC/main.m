@@ -41,6 +41,7 @@ void drawShapes(Shape shapes[], int count)
                 break;
                 
             default:
+                
                 break;
         }
     }

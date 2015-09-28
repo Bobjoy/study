@@ -298,29 +298,341 @@ System.config({
 
 在示例的模板中，增加一个输入文本框和一个按钮！
 
+## directives - 使用组件
 
-# 第三课：组件开发 - 模板的逻辑控制
-
-directives - 使用组件
 在Angular2中，一个组件的模板内除了可以使用标准的HTML元素，也可以使用自定义的组件！
 
-这是相当重要的特性，意味着Angular2将无偏差地对待标准的HTML元素和你自己定义的组件。这样， 你可以建立自己的领域建模语言了，这使得渲染模板和视图模型的对齐更加容易，也使得模板的语义性 更强：
+这是相当重要的特性，意味着Angular2将`无偏差`地对待标准的HTML元素和你自己定义的组件。这样， 你可以建立自己的`领域建模语言`了，这使得渲染模板和视图模型的对齐更加容易，也使得模板的语义性 更强：
 
 ![component-template](http://7xkexv.dl1.z0.glb.clouddn.com/15-9-28/component-template.jpg)
 
-声明要在模板中使用的组件
+### 声明要在模板中使用的组件
 
-不过，在使用自定义组件之前，必需在组件的ViewAnnotation中通过directives属性声明这个组件：
+不过，在使用自定义组件之前，`必需`在组件的ViewAnnotation中通过`directives`属性声明这个组件：
 
+```javascript
 @View({
     directives : [EzComp],
     template : "<ez-comp></ez-comp>"
 })
-你应该注意到了，directives属性的值是一个数组，这意味着，你需要在这里声明所有你需要在模板 中使用的自定义组件。
+```
+
+你应该注意到了，`directives`属性的值是一个`数组`，这意味着，你需要在这里声明`所有`你需要在模板 中使用的自定义组件。
+
+### 练习
+
+```css
+div.ez-app{background:red;padding:10px;}
+div.ez-card{background:green;padding:10px;}
+```
+
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>template - component </title>
+    <script type="text/javascript" src="lib/system@0.16.11.js"></script>
+    <script type="text/javascript" src="lib/angular2.dev.js"></script>
+    <script type="text/javascript" src="lib/system.config.js"></script>
+</head>
+<body>
+	<ez-app></ez-app>
+    <script type="module">
+    	import {Component,View,bootstrap} from "angular2/angular2";
+        
+        @Component({selector:"ez-app"})
+        @View({
+        	directives:[EzCard],
+        	template:`
+            	<div class="ez-app">
+                    <h1>EzApp</h1>
+                    <ez-card></ez-card>
+                </div>`
+        })
+        class EzApp{}
+        
+        @Component({selector : "ez-card"})
+        @View({
+        	template : `
+            	<div class="ez-card">
+            		<h1>EzCard</h1>
+                </div>`
+        })
+        class EzCard{}
+        
+        bootstrap(EzApp);
+    </script>
+</body>
+</html>
+```
 
 修改示例代码：
+
 1. 增加一个EzLogo组件
 2. 在EzCard组件的模板中使用这个组件
+
+## {{model}} - 文本插值
+
+在模板中使用可以`{{表达式}}`的方式绑定组件模型中的表达式，当表达式变化时， Angular2将自动更新对应的DOM对象：
+
+![intepolate](http://7xkexv.dl1.z0.glb.clouddn.com/15-9-28/intepolate.jpg)
+
+上图的示例中，模板声明了`h1`的内容将绑定到组件实例的`title`变量。Angular2 框架将实时检测`title`的变化，并在其变化时自动更新DOM树中`h1`的内容。
+
+### 练习
+
+```css
+p{text-indent:30px;line-height:25px;}
+```
+
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>template - bind model</title>
+    <script type="text/javascript" src="lib/system@0.16.11.js"></script>
+    <script type="text/javascript" src="lib/angular2.dev.js"></script>
+    <script type="text/javascript" src="lib/system.config.js"></script>
+</head>
+<body>
+	<ez-app></ez-app>
+    <script type="module">
+    	import {Component,View,bootstrap} from "angular2/angular2";
+        
+        @Component({selector:"ez-app"})
+        @View({
+        	template:`
+                <div>
+                	<h1>{{title}}</h1>
+                    <div>
+                    	<span>{{date}}</span> 来源：<span>{{source}}</span>
+                    </div>
+                    <p>{{content}}</p>
+                </div>
+            `
+        })
+        class EzApp{
+        	constructor(){
+            	this.title = "证监会：对恶意做空是有监测的";
+                this.date = "2015年07月11日 15:32:35";
+                this.source = "北京晚报";
+                this.content = `
+证监会新闻发言人邓舸昨天表示，近期，证监会要求所有上市公司制定维护股价稳定的方案，举措包括大股东增持、董监高增持、公司回购、员工持股计划、股权激励等，相关方案应尽快公布，并通过交易所平台向投资者介绍生产经营管理情况、加强投资者关系管理、维护股价稳定、做好投资者沟通工作。他介绍，该措施得到了上市公司大股东的积极响应，包括北京创业板董事长俱乐部、创业板首批28家公司实际控制人、浙江24家公司董事长等多个上市公司联盟以及大连、青岛、湖南等多地上市公司集体发声，宣布通过积极增持、回购、暂不减持等方式稳定公司股价。截至9日，两市已有655家公司公布股份增持、回购计划，积极维护公司股价稳定。
+				`;
+            }
+        }
+        
+        bootstrap(EzApp);
+    </script>
+</body>
+</html>
+
+```
+
+修改模板，将“新闻来源”字段及内容移动到文章尾部。
+
+## [property] - 绑定属性
+
+在模板中，也可以使用一对`中括号`将HTML元素或组件的`属性`绑定到组件模型的某个`表达式`， 当表达式的值变化时，对应的DOM对象将自动得到更新：
+
+![property bind](http://7xkexv.dl1.z0.glb.clouddn.com/15-9-28/prop-bind.jpg)
+
+等价的，你也可以使用`bind-`前缀进行属性绑定：
+
+```javascript
+@View({template:`<h1 bind-text-content="title"></h1>`})
+```
+
+很容易理解，通过属性，应用相关的数据流入组件，并影响组件的外观与行为。
+
+需要注意的是，属性的值总是被当做调用者模型中的表达式进行绑定，当表达式变化时，被 调用的组件自动得到更新。如果希望将属性绑定到一个常量字符串，别忘了给字符串加引号，或者， 去掉中括号：
+
+```javascript
+//错误，Angular2将找不到表达式 Hello,Angular2
+@View({template:`<h1 [text-content]="Hello,Angular2"></h1>`})
+//正确，Angular2识别出常量字符串表达式 'Hello,Angular2'
+@View({template:`<h1 [text-content]="'Hello,Angular2'"></h1>`})
+//正确，Angular2识别出常量字符串作为属性textContent的值
+@View({template:`<h1 text-content="Hello,Angular2"></h1>`})
+```
+
+### 练习
+
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>template - bind propery</title>
+    <script type="text/javascript" src="lib/system@0.16.11.js"></script>
+    <script type="text/javascript" src="lib/angular2.dev.js"></script>
+    <script type="text/javascript" src="lib/system.config.js"></script>
+</head>
+<body>
+	<ez-app></ez-app>
+    
+    <script type="module">
+    	import {bind,Component,View,bootstrap} from "angular2/angular2";
+
+        @Component({selector:"ez-app"})
+        @View({
+			template:`<h1 [style.color]="color">Hello,Angular2</h1>`
+		})
+        class EzApp{
+        	constructor(){
+            	this.color = "red";
+            }
+        }
+                
+        bootstrap(EzApp);
+
+    </script>
+</body>
+</html>
+```
+
+修改示例代码，使EzApp组件的标题颜色每秒钟随机变化一次！
+
+## (event) - 监听事件
+
+在模板中为元素添加事件监听很简单，使用一对`小括号`包裹`事件`名称，并绑定 到表达式即可：
+
+![event-bind](http://7xkexv.dl1.z0.glb.clouddn.com/15-9-28/event-bind.jpg)
+
+上面的代码实例为DOM对象`h1`的`click`事件添加监听函数`onClick()`。
+
+另一种等效的书写方法是在`事件`名称前加`on-`前缀：
+
+```javascript
+@View({template : `<h1 on-click="onClick()">HELLO</h1>`})
+```
+
+### 练习
+
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>template - bind propery</title>
+    <script type="text/javascript" src="lib/system@0.16.11.js"></script>
+    <script type="text/javascript" src="lib/angular2.dev.js"></script>
+    <script type="text/javascript" src="lib/system.config.js"></script>
+</head>
+<body>
+	<ez-app></ez-app>
+    
+    <script type="module">
+    	import {Component,View,bootstrap} from "angular2/angular2";
+
+        @Component({selector:"ez-app"})
+        @View({
+			template:`	
+            	<h1>Your turn! <b>{{sb}}</b></h1>
+            	<button (click)="roulette()">ROULETTE</button>
+           	`
+		})
+        class EzApp{
+        	constructor(){
+            	this.names = ["Jason","Mary","Linda","Lincoln","Albert","Jimmy"];
+                this.roulette();
+            }
+            //轮盘赌
+            roulette(){
+            	var idx = parseInt(Math.random()*this.names.length);
+                this.sb = this.names[idx];
+            }
+        }
+                
+        bootstrap(EzApp);
+
+    </script>
+</body>
+</html>
+```
+
+修改示例代码，点击EzApp组件的h1标题时，自动变换名称！
+
+## \#var - 局部变量
+
+有时模板中的不同元素间可能需要互相调用，Angular2提供一种简单的语法将元素 映射为`局部变量`：添加一个以`#`或`var-`开始的属性，后续的部分表示`变量名`， 这个变量对应元素的实例。
+
+在下面的代码示例中，我们为元素`h1`定义了一个局部变量`v_h1`，这个变量指向 该元素对应的DOM对象，你可以在模板中的其他地方调用其方法和属性：
+
+```javascript
+@View({
+    template : `
+        <h1 #v_h1="">hello</h1>
+        <button (click)="#v_h1.textContent = 'HELLO'">test</button>
+    `
+})
+```
+
+如果在一个组件元素上定义局部变量，那么其对应的对象为组件的实例：
+
+```javascript
+@View({
+    directives:[EzCalc],
+    template : "<ez-calc #c=""></ez-calc>"
+})
+```
+
+在上面的示例中，模板内的局部变量`c`指向EzCalc的实例。
+
+### 练习
+
+```css
+b{color:red}
+```
+
+```html
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <title>template - local var</title>
+    <script type="text/javascript" src="lib/system@0.16.11.js"></script>
+    <script type="text/javascript" src="lib/angular2.dev.js"></script>
+    <script type="text/javascript" src="lib/system.config.js"></script>
+</head>
+<body>
+	<ez-app></ez-app>
+    
+    <script type="module">
+    	import {Component,View,bootstrap} from "angular2/angular2";
+
+        @Component({selector:"ez-app"})
+        @View({
+			template:`	
+            	<h1>
+                	<button>变色</button>
+                	I choose 
+                    <b #v_who>WHO?</b>
+                </h1>
+            	<button (click)="v_who.textContent = 'Jason'">Jason</button>
+            	<button (click)="v_who.textContent = 'Mary'">Mary</button>
+            	<button (click)="v_who.textContent = 'Linda'">Linda</button>
+            	<button (click)="v_who.textContent = 'Lincoln'">Lincoln</button>
+            	<button (click)="v_who.textContent = 'Jimmy'">Jimmy</button>
+            	<button (click)="v_who.textContent = 'Albert'">Albert</button>
+           	`
+		})
+        class EzApp{}
+                
+        bootstrap(EzApp);
+
+    </script>
+</body>
+</html>
+```
+
+为示例代码的变色按钮添加事件监听，点击该按钮时，将EzApp组件的h1标题 变为黑色背景，白色字体！
+
+
+# 第三课：组件开发 - 模板的逻辑控制
+
 
 
 # 第三课：组件开发 - 为模板应用样式
