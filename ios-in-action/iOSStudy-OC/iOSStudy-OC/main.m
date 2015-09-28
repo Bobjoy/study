@@ -7,7 +7,44 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Person.h"
+#import "NSString+Utilities.h"
+
+typedef enum {
+    kCircle,
+    kRectangle,
+    kOblateSpheroid
+} ShapeType;
+
+typedef enum {
+    kRedColor,
+    kGreenColor,
+    kBlueColor
+} ShapeColor;
+
+typedef struct {
+    int x, y, width, height;
+} ShapeRect;
+
+typedef struct {
+    ShapeType type;
+    ShapeColor fillColor;
+    ShapeRect bounds;
+} Shape;
+
+void drawShapes(Shape shapes[], int count)
+{
+    int i;
+    for (i = 0; i < count; i++) {
+        switch (shapes[i].type) {
+            case kCircle:
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -30,16 +67,30 @@ int main(int argc, const char * argv[]) {
 //            [onePerson printInfo];
 //        }
         
-        int var[] = {10, 100, 200};
-        int i, *ptr;
         
-        ptr = var;
-        for (i = 0; i < 3; i++) {
-            NSLog(@"Address of var[%d] = %p\n", i, ptr);
-            NSLog(@"Value of var[%d] = %d\n", i, *ptr);
-            ptr++;
-        }
-        NSLog(@"Address of ptr = %p\n", ptr);
+        
+        NSString* str = @"https://www.baidu.com";
+        BOOL isURL = [str isURL];
+        NSLog(@"%x", isURL);
+        
+        Shape shapes[3];
+        
+        ShapeRect rect0 = {0, 0, 10, 30};
+        shapes[0].type = kCircle;
+        shapes[0].fillColor = kGreenColor;
+        shapes[0].bounds = rect0;
+        
+        ShapeRect rect1 = {30, 40, 50, 60};
+        shapes[1].type = kCircle;
+        shapes[1].fillColor = kGreenColor;
+        shapes[1].bounds = rect1;
+        
+        ShapeRect rect2 = {15, 18, 37, 29};
+        shapes[2].type = kCircle;
+        shapes[2].fillColor = kGreenColor;
+        shapes[2].bounds = rect2;
+        
+        
     }
     return 0;
 }

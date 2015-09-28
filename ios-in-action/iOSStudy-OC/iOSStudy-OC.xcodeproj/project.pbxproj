@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F554BC221B621AC600BC120E /* Sark.m in Sources */ = {isa = PBXBuildFile; fileRef = F554BC211B621AC600BC120E /* Sark.m */; };
 		F554BC291B621B6A00BC120E /* Sark+GayExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = F554BC281B621B6A00BC120E /* Sark+GayExtention.m */; };
+		F5ACFB691BB8EC8D00BA1CFE /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ACFB681BB8EC8D00BA1CFE /* Photo.m */; };
+		F5ACFB6D1BB8F47E00BA1CFE /* NSString+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ACFB6C1BB8F47E00BA1CFE /* NSString+Utilities.m */; };
 		F5CEA7FD1B607C3B0035A3CA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CEA7FC1B607C3B0035A3CA /* main.m */; };
 		F5CEA8051B607C4D0035A3CA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = F5CEA8041B607C4D0035A3CA /* Person.m */; };
 /* End PBXBuildFile section */
@@ -30,6 +32,10 @@
 		F554BC211B621AC600BC120E /* Sark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sark.m; sourceTree = "<group>"; };
 		F554BC271B621B6A00BC120E /* Sark+GayExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sark+GayExtention.h"; sourceTree = "<group>"; };
 		F554BC281B621B6A00BC120E /* Sark+GayExtention.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sark+GayExtention.m"; sourceTree = "<group>"; };
+		F5ACFB681BB8EC8D00BA1CFE /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		F5ACFB6A1BB8EC9500BA1CFE /* Photo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
+		F5ACFB6B1BB8F47E00BA1CFE /* NSString+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Utilities.h"; sourceTree = "<group>"; };
+		F5ACFB6C1BB8F47E00BA1CFE /* NSString+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Utilities.m"; sourceTree = "<group>"; };
 		F5CEA7F91B607C3B0035A3CA /* iOSStudy-OC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "iOSStudy-OC"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5CEA7FC1B607C3B0035A3CA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F5CEA8031B607C4D0035A3CA /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -54,6 +60,8 @@
 				F554BC211B621AC600BC120E /* Sark.m */,
 				F554BC271B621B6A00BC120E /* Sark+GayExtention.h */,
 				F554BC281B621B6A00BC120E /* Sark+GayExtention.m */,
+				F5ACFB6B1BB8F47E00BA1CFE /* NSString+Utilities.h */,
+				F5ACFB6C1BB8F47E00BA1CFE /* NSString+Utilities.m */,
 			);
 			name = category;
 			sourceTree = "<group>";
@@ -77,6 +85,8 @@
 		F5CEA7FB1B607C3B0035A3CA /* iOSStudy-OC */ = {
 			isa = PBXGroup;
 			children = (
+				F5ACFB6A1BB8EC9500BA1CFE /* Photo.h */,
+				F5ACFB681BB8EC8D00BA1CFE /* Photo.m */,
 				F554BC231B621AD100BC120E /* category */,
 				F5CEA7FC1B607C3B0035A3CA /* main.m */,
 				F5CEA8031B607C4D0035A3CA /* Person.h */,
@@ -141,7 +151,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5ACFB691BB8EC8D00BA1CFE /* Photo.m in Sources */,
 				F5CEA8051B607C4D0035A3CA /* Person.m in Sources */,
+				F5ACFB6D1BB8F47E00BA1CFE /* NSString+Utilities.m in Sources */,
 				F554BC291B621B6A00BC120E /* Sark+GayExtention.m in Sources */,
 				F5CEA7FD1B607C3B0035A3CA /* main.m in Sources */,
 				F554BC221B621AC600BC120E /* Sark.m in Sources */,

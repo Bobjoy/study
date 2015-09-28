@@ -7,34 +7,34 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>E06A5F52-9FCC-4B7D-A80F-CB09F85977D6</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>iOSStudy-OC</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3F2927B8A2D50E3CA017993A5F1C5AF935ED1D68</key>
-		<string>github.com:Bobjoy/swift.git</string>
+		<key>2EF7AB868E05F6EE22FC45C3FCECB8A275336C86</key>
+		<string>github.com:bobjoy/study.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>iOSStudy-OC/iOSStudy-OC.xcodeproj/project.xcworkspace</string>
+	<string>ios-in-action/iOSStudy-OC/iOSStudy-OC.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3F2927B8A2D50E3CA017993A5F1C5AF935ED1D68</key>
-		<string>../../..</string>
+		<key>2EF7AB868E05F6EE22FC45C3FCECB8A275336C86</key>
+		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:Bobjoy/swift.git</string>
+	<string>github.com:bobjoy/study.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3F2927B8A2D50E3CA017993A5F1C5AF935ED1D68</string>
+	<string>2EF7AB868E05F6EE22FC45C3FCECB8A275336C86</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3F2927B8A2D50E3CA017993A5F1C5AF935ED1D68</string>
+			<string>2EF7AB868E05F6EE22FC45C3FCECB8A275336C86</string>
 			<key>IDESourceControlWCCName</key>
-			<string>study</string>
+			<string>study-in-action</string>
 		</dict>
 	</array>
 </dict>

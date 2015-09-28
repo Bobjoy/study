@@ -10,4 +10,6 @@
 
 @interface NSString (Utilities)
 
+- (BOOL)isURL;
+
 @end

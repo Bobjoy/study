@@ -14,7 +14,15 @@
     NSString* photographer;
 }
 
-- caption;
-- photographer;
+// 用属性改写前
+- (NSString*)caption;
+- (NSString*)photographer;
+
+- (void)setCaption: (NSString*)input;
+- (void)setPhotographer: (NSString*)input;
+
+// 用属性改写后
+@property (retain) NSString* caption;
+@property (retain) NSString* photographer;
 
 @end
