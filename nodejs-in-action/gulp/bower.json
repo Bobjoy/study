@@ -1,0 +1,24 @@
+{
+  "name": "wx_ceair",
+  "version": "1.0.0",
+  "authors": [
+    "bobjoy <bobjoy1010@163.com>"
+  ],
+  "description": "Weixin Ceair",
+  "main": "index.js",
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "backbone": "~1.2.3",
+    "zepto": "~1.1.6"
+  }
+}
