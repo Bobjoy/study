@@ -1,0 +1,15 @@
+<!doctype html>
+<html ng-app>
+    <head>
+        <meta charset="UTF-8">
+        <title>AngularJS快速开始</title>
+        <script src="/.vender/angular/angular.js"></script>
+    </head>
+    <body>
+        Hello {{'World'}}!
+        <hr/>
+        Your name: <input type="text" ng-model="yourname" placeholder="World" />
+        <br/>
+        Hello {{yourname || 'World'}}!
+    </body>
+</html>
