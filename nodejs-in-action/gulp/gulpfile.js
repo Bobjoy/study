@@ -50,11 +50,37 @@ watcher.on('change', function(event){
 var less = require('gulp-less'),
 	livereload = require('gulp-livereload'),
 	watch = require('gulp-watch');
-
 gulp.task('less', function(){
 	gulp.src('less/*.less')
-		.pipe(watch())
+		.pipe(watch('less/*.less'))
 		.pipe(less())
 		.pipe(gulp.dest('css'))
 		.pipe(livereload())
+});
+
+var browserSync = require('browser-sync');
+gulp.task('browser-sync', function(){
+	var files = [
+		'./**/*.html',
+		'./css/**/*.css',
+		'./imgs/**/*.png',
+		'./js/**/*.js'
+	];
+	
+	browserSync.init(files, {
+		server: {
+			baseDir: '.'
+		}
+	});
+});
+
+var autoprefix = require('gulp-autoprefixer');
+gulp.task('build-css', function(){
+	gulp.src('less/*.less')
+		.pipe(less())
+		.pipe(autoprefix({
+			browsers: ['last 2 versions'],
+			cascade: false
+		}))
+		.pipe(gulp.dest('build/css'));
 });

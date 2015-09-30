@@ -1,0 +1,23 @@
+{
+  "name": "PolymerStudy",
+  "version": "0.0.1",
+  "homepage": "http://docs.polymerchina.org/1.0/docs/start/quick-tour.html",
+  "authors": [
+    "bobjoy <bobjoy1010@163.com>"
+  ],
+  "moduleType": [
+    "amd"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}

@@ -1,0 +1,26 @@
+[ERR!] cwd  : /Users/vetech/Desktop/BFL/study-in-action/web-in-action/knockout
+[ERR!] os   : Darwin 14.0.0
+[ERR!] argv : "node" "/Users/vetech/.nvm/versions/node/v0.12.4/bin/tsd" "query" "knockout"
+[ERR!] node : v0.12.4
+[ERR!] tsd  : 0.6.4
+[ERR!] Error: connect ETIMEDOUT
+[ERR!] CODE : ETIMEDOUT
+[ERR!] connect ETIMEDOUT
+This is most likely not a problem with tsd itself
+and is related to network connectivity.
+In most cases you are behind a proxy or have bad network settings.
+
+If you are behind a proxy, please make sure that the
+'proxy' config is set properly.  See: https://github.com/DefinitelyTyped/tsd#tsdrc
+[ERR!] 
+Error: connect ETIMEDOUT
+    at exports._errnoException (util.js:746:11)
+    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1010:19)
+
+[ERR!] tsd.json: {"version":"v4","repo":"borisyankov/DefinitelyTyped","ref":"master","path":"typings","bundle":"typings/tsd.d.ts","installed":{}}
+
+[ERR!] .tsdrc could not be retrieved
+
+[ERR!] Please include the following file with any support request:
+    /Users/vetech/Desktop/BFL/study-in-action/web-in-action/knockout/tsd-debug.log
+
