@@ -57,7 +57,7 @@ class Spider:
 		
 	def getContents(self):
 		page = self.getPage()
-		pattern = re.compile('<a style="color: #ff0000;" href="(.*?)".*?>((\d+).*?)</a>',re.S)
+		pattern = re.compile('<a href="(.*?)".*?>((\d+).*?)</a>',re.S)
 		items = re.findall(pattern, page)
 		for item in items:
 			self.result[item[2]] = [item[1], item[0]]
