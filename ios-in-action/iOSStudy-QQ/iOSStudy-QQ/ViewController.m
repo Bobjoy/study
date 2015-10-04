@@ -57,16 +57,15 @@
     Proportion = 0.77;
     proportionOfLeftView = 1;
     distanceOfLeftView = 50;
-    
+    [self.navigationController setNavigationBarHidden:NO];
     // 给根容器设置背景
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back"]];
-    imageView.frame = [[UIScreen mainScreen] bounds];
-    [self.view addSubview: imageView];
+    UIImageView* bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back"]];
+    bgImageView.frame = [[UIScreen mainScreen] bounds];
+    [self.view addSubview: bgImageView];
     
     // 通过 StoryBoard 取出左侧侧滑菜单视图
     //leftViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"LeftViewController"];
     leftViewController = [[LeftViewController alloc] init];
-    
     
     // 适配 4.7 和 5.5 寸屏幕的缩放操作，有偶发性小 bug
     if (kScreenWidth > 320) {

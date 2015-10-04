@@ -32,6 +32,13 @@
     
     settingTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, self.view.frame.size.height-64) style:UITableViewStyleGrouped];
     
+    settingTableView.backgroundView = nil;
+    settingTableView.backgroundView = [[UIView alloc] init];
+    settingTableView.backgroundView.backgroundColor = [UIColor clearColor];
+    settingTableView.backgroundColor = [UIColor clearColor];
+    
+    settingTableView.separatorStyle = NO;
+    
     settingTableView.delegate = self;
     settingTableView.dataSource = self;
     settingTableView.tableFooterView = [[UIView alloc] init];

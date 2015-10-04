@@ -18,6 +18,8 @@
 		F5EB8E4C1BC0DA3F00649A9E /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EB8E4B1BC0DA3F00649A9E /* MainTabBarController.m */; };
 		F5EB8E501BC0DE8800649A9E /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EB8E4F1BC0DE8800649A9E /* LeftViewController.m */; };
 		F5EB8E531BC0E35C00649A9E /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EB8E521BC0E35B00649A9E /* HomeViewController.m */; };
+		F5EB8E561BC1044300649A9E /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EB8E551BC1044300649A9E /* PersonalViewController.m */; };
+		F5EB8E591BC1049900649A9E /* ServiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EB8E581BC1049900649A9E /* ServiceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		F5EB8E4F1BC0DE8800649A9E /* LeftViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
 		F5EB8E511BC0E35B00649A9E /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		F5EB8E521BC0E35B00649A9E /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		F5EB8E541BC1044300649A9E /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
+		F5EB8E551BC1044300649A9E /* PersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
+		F5EB8E571BC1049900649A9E /* ServiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceViewController.h; sourceTree = "<group>"; };
+		F5EB8E581BC1049900649A9E /* ServiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +100,7 @@
 		F5EB8E201BC0D88D00649A9E /* iOSStudy-QQ */ = {
 			isa = PBXGroup;
 			children = (
+				F5EB8E4D1BC0DA9F00649A9E /* Common.h */,
 				F5EB8E471BC0D9AD00649A9E /* UIColor+Hex.h */,
 				F5EB8E481BC0D9AD00649A9E /* UIColor+Hex.m */,
 				F5EB8E251BC0D88D00649A9E /* AppDelegate.h */,
@@ -108,9 +115,12 @@
 				F5EB8E4B1BC0DA3F00649A9E /* MainTabBarController.m */,
 				F5EB8E4E1BC0DE8800649A9E /* LeftViewController.h */,
 				F5EB8E4F1BC0DE8800649A9E /* LeftViewController.m */,
-				F5EB8E4D1BC0DA9F00649A9E /* Common.h */,
 				F5EB8E511BC0E35B00649A9E /* HomeViewController.h */,
 				F5EB8E521BC0E35B00649A9E /* HomeViewController.m */,
+				F5EB8E541BC1044300649A9E /* PersonalViewController.h */,
+				F5EB8E551BC1044300649A9E /* PersonalViewController.m */,
+				F5EB8E571BC1049900649A9E /* ServiceViewController.h */,
+				F5EB8E581BC1049900649A9E /* ServiceViewController.m */,
 			);
 			path = "iOSStudy-QQ";
 			sourceTree = "<group>";
@@ -246,7 +256,9 @@
 				F5EB8E491BC0D9AD00649A9E /* UIColor+Hex.m in Sources */,
 				F5EB8E501BC0DE8800649A9E /* LeftViewController.m in Sources */,
 				F5EB8E271BC0D88D00649A9E /* AppDelegate.m in Sources */,
+				F5EB8E591BC1049900649A9E /* ServiceViewController.m in Sources */,
 				F5EB8E531BC0E35C00649A9E /* HomeViewController.m in Sources */,
+				F5EB8E561BC1044300649A9E /* PersonalViewController.m in Sources */,
 				F5EB8E241BC0D88D00649A9E /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

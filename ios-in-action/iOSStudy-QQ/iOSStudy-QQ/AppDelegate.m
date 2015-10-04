@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "UIColor+Hex.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +25,7 @@
     navBarAppearace.translucent = NO;
     navBarAppearace.barTintColor = [UIColor colorWithHex:0x25b6ed];
     navBarAppearace.tintColor = [UIColor whiteColor];
-    navBarAppearace.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};    
+    navBarAppearace.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     return YES;
 }

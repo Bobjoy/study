@@ -7,6 +7,9 @@
 //
 
 #import "MainTabBarController.h"
+#import "HomeViewController.h"
+#import "PersonalViewController.h"
+#import "ServiceViewController.h"
 
 @interface MainTabBarController ()
 
@@ -18,24 +21,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIViewController *c1=[[UIViewController alloc]init];
-    c1.view.backgroundColor=[UIColor whiteColor];
-    //c1.view.backgroundColor=[UIColor greenColor];
-    c1.tabBarItem.title=@"首页";
-    //c1.tabBarItem.image=[UIImage imageNamed:@"tab_recent_nor"];
-    //c1.tabBarItem.badgeValue=@"123";
+    HomeViewController* home=[[HomeViewController alloc]init];
+    home.view.backgroundColor=[UIColor whiteColor];
+    home.tabBarItem.title=@"首页";
+    home.tabBarItem.image=[UIImage imageNamed:@"home"];
     
-    UIViewController *c2=[[UIViewController alloc]init];
-    c2.view.backgroundColor=[UIColor whiteColor];
-    c2.tabBarItem.title=@"个人中心";
-    //c2.tabBarItem.image=[UIImage imageNamed:@"tab_buddy_nor"];
+    PersonalViewController *personal=[[PersonalViewController alloc]init];
+    personal.view.backgroundColor=[UIColor whiteColor];
+    personal.tabBarItem.title=@"个人中心";
+    personal.tabBarItem.badgeValue=@"3";
+    personal.tabBarItem.image=[UIImage imageNamed:@"personal"];
     
-    UIViewController *c3=[[UIViewController alloc]init];
-    c3.view.backgroundColor=[UIColor whiteColor];
-    c3.tabBarItem.title=@"在线客服";
-    //c3.tabBarItem.image=[UIImage imageNamed:@"tab_qworld_nor"];
+    ServiceViewController *service=[[ServiceViewController alloc]init];
+    service.view.backgroundColor=[UIColor whiteColor];
+    service.tabBarItem.title=@"在线客服";
+    service.tabBarItem.image=[UIImage imageNamed:@"phone"];
     
-    self.viewControllers = @[c1, c2, c3];
+    self.viewControllers = @[home, personal, service];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,12 +47,16 @@
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item
 {
+    NSLog(@"didSelectItem");
     switch (item.tag) {
         case 0:
+            NSLog(@"0");
             break;
         case 1:
+            NSLog(@"1");
             break;
         case 2:
+            NSLog(@"2");
             break;
         default:
             break;
