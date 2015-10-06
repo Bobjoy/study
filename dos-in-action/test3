@@ -1,0 +1,6 @@
+
+---------- TEST3.BAT
+:start 
+set /s var+=1 
+if %var% leq 4 goto start 
+pause 

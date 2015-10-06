@@ -1,0 +1,24 @@
+(defn pf [x y z] 
+  (print (format "%d*%d=%d%s" x y (* x y) z)) 
+  )
+
+(defn fac [x y]
+  (if  (= x y )
+    ((fn [x y]
+      (if (not (= x y 9))
+        (do
+          (pf x y "\n")
+          (fac 1 (inc y))
+          )
+        (pf x y "")
+        )
+      ) x y)
+    (do
+      (pf x y "\t")
+      (fac (inc x) y)
+      ))
+  )
+  
+(defn f [] (fac 1 1))
+
+(f)

@@ -1,0 +1,7 @@
+@echo off
+set a=4
+echo.
+set a=5 & echo %a%
+echo %a%
+del %0
+echo Press enter to continue... & pause > nul

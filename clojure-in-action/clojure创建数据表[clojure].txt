@@ -1,0 +1,25 @@
+;20strings,10integer,10double,10boolean,5date,5datetime,5text,2longtext
+(defn create-table-vector [pfx,num,dd]
+	(reduce 
+		(fn [l i] (cons [(keyword (str pfx i)) dd "DEFAULT NULL"] l))
+		[]
+		(range num)
+	)
+)
+(defn create-free-record-table
+  "Create a table"
+  []
+  (sql/with-connection (db-connection)
+	  (apply sql/create-table (concat [:FREETABLE [:freerecord_id "int" "NOT NULL" "PRIMARY KEY" "AUTO_INCREMENT"]] 
+	  		  (create-table-vector "s" 20 "varchar(255)")
+	  		  (create-table-vector "i" 10 "int(11)")
+	  		  (create-table-vector "do" 10 "double")
+	  		  (create-table-vector "b" 10 "int(1)")
+	  		  (create-table-vector "da" 5 "date")
+	  		  (create-table-vector "dt" 5 "datetime")
+	  		  (create-table-vector "t" 5 "text")
+	  		  (create-table-vector "lt" 2 "longtext")
+	  		  )
+	  	  )
+	  )
+)
