@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F501BDDC1BC77E700035E7E9 /* MyFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F501BDDB1BC77E700035E7E9 /* MyFileLogger.m */; settings = {ASSET_TAGS = (); }; };
 		F554BC221B621AC600BC120E /* Sark.m in Sources */ = {isa = PBXBuildFile; fileRef = F554BC211B621AC600BC120E /* Sark.m */; };
 		F554BC291B621B6A00BC120E /* Sark+GayExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = F554BC281B621B6A00BC120E /* Sark+GayExtention.m */; };
 		F5ACFB691BB8EC8D00BA1CFE /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ACFB681BB8EC8D00BA1CFE /* Photo.m */; };
@@ -28,6 +29,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F501BDDA1BC77E700035E7E9 /* MyFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFileLogger.h; sourceTree = "<group>"; };
+		F501BDDB1BC77E700035E7E9 /* MyFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFileLogger.m; sourceTree = "<group>"; };
 		F554BC201B621AC600BC120E /* Sark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sark.h; sourceTree = "<group>"; };
 		F554BC211B621AC600BC120E /* Sark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sark.m; sourceTree = "<group>"; };
 		F554BC271B621B6A00BC120E /* Sark+GayExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sark+GayExtention.h"; sourceTree = "<group>"; };
@@ -53,6 +56,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F501BDD71BC77DE30035E7E9 /* logs */ = {
+			isa = PBXGroup;
+			children = (
+				F501BDDA1BC77E700035E7E9 /* MyFileLogger.h */,
+				F501BDDB1BC77E700035E7E9 /* MyFileLogger.m */,
+			);
+			path = logs;
+			sourceTree = "<group>";
+		};
 		F554BC231B621AD100BC120E /* category */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +97,7 @@
 		F5CEA7FB1B607C3B0035A3CA /* iOSStudy-OC */ = {
 			isa = PBXGroup;
 			children = (
+				F501BDD71BC77DE30035E7E9 /* logs */,
 				F5ACFB6A1BB8EC9500BA1CFE /* Photo.h */,
 				F5ACFB681BB8EC8D00BA1CFE /* Photo.m */,
 				F554BC231B621AD100BC120E /* category */,
@@ -154,6 +167,7 @@
 				F5ACFB691BB8EC8D00BA1CFE /* Photo.m in Sources */,
 				F5CEA8051B607C4D0035A3CA /* Person.m in Sources */,
 				F5ACFB6D1BB8F47E00BA1CFE /* NSString+Utilities.m in Sources */,
+				F501BDDC1BC77E700035E7E9 /* MyFileLogger.m in Sources */,
 				F554BC291B621B6A00BC120E /* Sark+GayExtention.m in Sources */,
 				F5CEA7FD1B607C3B0035A3CA /* main.m in Sources */,
 				F554BC221B621AC600BC120E /* Sark.m in Sources */,

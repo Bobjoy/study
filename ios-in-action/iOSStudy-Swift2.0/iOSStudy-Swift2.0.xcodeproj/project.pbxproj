@@ -12,6 +12,7 @@
 		F501BDEF1BC77F3A0035E7E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F501BDED1BC77F3A0035E7E9 /* Main.storyboard */; };
 		F501BDF11BC77F3A0035E7E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F501BDF01BC77F3A0035E7E9 /* Assets.xcassets */; };
 		F501BDF41BC77F3A0035E7E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F501BDF21BC77F3A0035E7E9 /* LaunchScreen.storyboard */; };
+		F501BDFD1BC77FA00035E7E9 /* SwiftProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F501BDFC1BC77FA00035E7E9 /* SwiftProtocols.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F501BDF01BC77F3A0035E7E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F501BDF31BC77F3A0035E7E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F501BDF51BC77F3A0035E7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F501BDFC1BC77FA00035E7E9 /* SwiftProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		F501BDE81BC77F3A0035E7E9 /* iOSStudy-Swift2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				F501BDFB1BC77F7C0035E7E9 /* 面向协议编程 */,
 				F501BDE91BC77F3A0035E7E9 /* AppDelegate.swift */,
 				F501BDEB1BC77F3A0035E7E9 /* ViewController.swift */,
 				F501BDED1BC77F3A0035E7E9 /* Main.storyboard */,
@@ -62,6 +65,14 @@
 				F501BDF51BC77F3A0035E7E9 /* Info.plist */,
 			);
 			path = "iOSStudy-Swift2.0";
+			sourceTree = "<group>";
+		};
+		F501BDFB1BC77F7C0035E7E9 /* 面向协议编程 */ = {
+			isa = PBXGroup;
+			children = (
+				F501BDFC1BC77FA00035E7E9 /* SwiftProtocols.swift */,
+			);
+			path = "面向协议编程";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +147,7 @@
 			files = (
 				F501BDEC1BC77F3A0035E7E9 /* ViewController.swift in Sources */,
 				F501BDEA1BC77F3A0035E7E9 /* AppDelegate.swift in Sources */,
+				F501BDFD1BC77FA00035E7E9 /* SwiftProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +295,7 @@
 				F501BDFA1BC77F3A0035E7E9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
