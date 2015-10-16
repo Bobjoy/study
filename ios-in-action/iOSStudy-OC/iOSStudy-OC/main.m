@@ -61,19 +61,19 @@ void parserChinese(NSString * chinese) {
     NSString * dateReg = @"(\\d{4}-\\d{2}-\\d{2}\\s+\\d{2}.?\\d{2})";
     NSRange dateRange = [chinese rangeOfString:dateReg options:NSRegularExpressionSearch];
     if (dateRange.location != NSNotFound) {
-        NSLog(@"date location: %ld, length: %ld", dateRange.location, dateRange.length);
+        NSLog(@"date location: %ld, length: %ld, content:%@", dateRange.location, dateRange.length, [chinese substringWithRange:dateRange]);
     }
     
-    NSString * travelReg = @"(\\w+?-\\w+?)!";
+    NSString * travelReg = @"([\u4E00-\u9FA5]+[\\--——\\s]+[\u4E00-\u9FA5]+)";
     NSRange travelRange = [chinese rangeOfString:travelReg options:NSRegularExpressionSearch];
     if (travelRange.location != NSNotFound) {
-        NSLog(@"travel location: %ld, length: %ld", travelRange.location, travelRange.length);
+        NSLog(@"travel location: %ld, length: %ld, content:%@", travelRange.location, travelRange.length, [chinese substringWithRange:travelRange]);
     }
     
     NSString * seatReg = @"(\\d+[A-Z])";
     NSRange seatRange = [chinese rangeOfString:seatReg options:NSRegularExpressionSearch];
     if (seatRange.location != NSNotFound) {
-        NSLog(@"seat location: %ld, length: %ld", seatRange.location, seatRange.length);
+        NSLog(@"seat location: %ld, length: %ld, content:%@", seatRange.location, seatRange.length, [chinese substringWithRange:seatRange]);
     }
 }
 
@@ -162,10 +162,10 @@ int main(int argc, const char * argv[]) {
         parserChinese(chinese);
         
         
-        NSArray * arr = @[
-                          @{@"text":@"2015-09-30  09：30", @"color":@"red", @"font":@"Arial"},
-                          @{@"text":@"南京禄口国际机场-北京首都机场", @"color":@"blue", @"font":@"Arial"}
-                         ];
+//        NSArray * arr = @[
+//                          @{@"text":@"2015-09-30  09：30", @"color":@"red", @"font":@"Arial"},
+//                          @{@"text":@"南京禄口国际机场-北京首都机场", @"color":@"blue", @"font":@"Arial"}
+//                         ];
         //formatStringsFromArrayWithAttributes(8, arr);
         
         
