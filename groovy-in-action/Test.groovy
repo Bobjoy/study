@@ -1,17 +1,17 @@
 public class Test {
   public static void main(String[] args) {
-    String name1 = "É½·çĞ¡×Ó";
-    String name2 = new String("É½·çĞ¡×Ó");
-    // GroovyÖĞĞ´Îª name1 == name2
+    String name1 = "å±±é£å°å­";
+    String name2 = new String("å±±é£å°å­");
+    // Groovyä¸­å†™ä¸º name1 == name2
     if (name1.equals(name2)) {
       System.out.println("equal");
     } else {
-      System.out.println("not equal"); 
+      System.out.println("not equal");
     }
-    // GroovyÖĞĞ´Îª name1.is(name2)
+    // Groovyä¸­å†™ä¸º name1.is(name2)
     if (name1 == name2) {
       System.out.println("identical");
     } else {
-      System.out.println("not identical"); 
-    } 
+      System.out.println("not identical");
+    }
 }
