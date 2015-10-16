@@ -47,6 +47,14 @@ void drawShapes(Shape shapes[], int count)
     }
 }
 
+typedef NS_ENUM(NSInteger, FlightDynamicStatus) {
+    kFlightDynamicStatusNotFly = 0,     // 未起飞
+    kFlightDynamicStatusWillFly = 1,    // 待起飞
+    kFlightDynamicStatusFlying = 2,     // 飞行中
+    kFlightDynamicStatusArrived = 3,    // 已降落
+    kFlightDynamicStatusCanceled = 4    // 取消
+};
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        char response;
@@ -91,7 +99,15 @@ int main(int argc, const char * argv[]) {
         shapes[2].fillColor = kGreenColor;
         shapes[2].bounds = rect2;
         
-        
+        FlightDynamicStatus s = 1;
+        switch (s) {
+            case kFlightDynamicStatusNotFly:
+                NSLog(@"not fly");
+                break;
+                
+            default:
+                break;
+        }
     }
     return 0;
 }
