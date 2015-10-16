@@ -88,6 +88,7 @@
 		F5E3B3431BACF7FC006DD9BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = BFL;
 				TargetAttributes = {
@@ -236,6 +237,7 @@
 				F5E3B3541BACF7FC006DD9BC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

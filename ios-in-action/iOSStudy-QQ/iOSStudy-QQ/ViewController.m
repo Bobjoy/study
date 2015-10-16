@@ -153,7 +153,7 @@
         
         return;
     }
-    
+    NSLog(@"x=%d, dis=%d, pro=%d", x, trueDistance, trueProportion);
     // 计算缩放比例
     CGFloat proportion = recongnizer.view.frame.origin.x >= 0 ? -1 : 1;
     proportion *= trueDistance / kScreenWidth;
