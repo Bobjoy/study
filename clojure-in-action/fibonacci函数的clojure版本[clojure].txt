@@ -1,0 +1,4 @@
+(defn fibo [i]                                                                                                                                         
+  (if (contains? [0 1] i)                                                                                                                              
+    i                                                                                                                                                  
+    (+ (fibo (- i 1)) (fibo (- i 2)))))
