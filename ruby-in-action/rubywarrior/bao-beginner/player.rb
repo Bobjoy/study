@@ -15,6 +15,7 @@ class Player
     '''
     
     # level3
+    '''
     if warrior.feel.empty?
       if warrior.health < 20
         warrior.rest!
@@ -23,6 +24,20 @@ class Player
       end
     else
       warrior.attack!
+    end
+    '''
+    
+    # level4
+    @health = warrior.health
+    if warrior.feel.empty?
+      if @health < 20
+        warrior.rest!
+      else
+        warrior.walk!
+      end
+    else
+      warrior.attack!
+      @health = warrior.health
     end
     
   end
