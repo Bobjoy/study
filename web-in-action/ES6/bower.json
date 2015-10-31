@@ -1,0 +1,25 @@
+{
+  "name": "ES6",
+  "version": "0.0.0",
+  "homepage": "https://github.com/bobjoy/study",
+  "authors": [
+    "bobjoy <bobjoy1010@163.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "assets/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "three.js": "threejs#*"
+  }
+}
