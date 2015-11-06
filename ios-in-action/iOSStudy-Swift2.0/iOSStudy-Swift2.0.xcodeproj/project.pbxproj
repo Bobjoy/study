@@ -13,6 +13,10 @@
 		F501BDF11BC77F3A0035E7E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F501BDF01BC77F3A0035E7E9 /* Assets.xcassets */; };
 		F501BDF41BC77F3A0035E7E9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F501BDF21BC77F3A0035E7E9 /* LaunchScreen.storyboard */; };
 		F501BDFD1BC77FA00035E7E9 /* SwiftProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F501BDFC1BC77FA00035E7E9 /* SwiftProtocols.swift */; settings = {ASSET_TAGS = (); }; };
+		F54A36211BE8413C006E897A /* FriendTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54A36201BE8413C006E897A /* FriendTableViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		F54A36251BE84208006E897A /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54A36241BE84208006E897A /* Datasource.swift */; settings = {ASSET_TAGS = (); }; };
+		F54A36281BE84240006E897A /* CoreSpotlight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F54A36271BE84240006E897A /* CoreSpotlight.framework */; };
+		F54A362A1BE8427B006E897A /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54A36291BE8427B006E897A /* Person.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,11 @@
 		F501BDF31BC77F3A0035E7E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F501BDF51BC77F3A0035E7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F501BDFC1BC77FA00035E7E9 /* SwiftProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftProtocols.swift; sourceTree = "<group>"; };
+		F54A361C1BE83E0E006E897A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F54A36201BE8413C006E897A /* FriendTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendTableViewController.swift; sourceTree = "<group>"; };
+		F54A36241BE84208006E897A /* Datasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		F54A36271BE84240006E897A /* CoreSpotlight.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreSpotlight.framework; path = System/Library/Frameworks/CoreSpotlight.framework; sourceTree = SDKROOT; };
+		F54A36291BE8427B006E897A /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54A36281BE84240006E897A /* CoreSpotlight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +66,8 @@
 		F501BDE81BC77F3A0035E7E9 /* iOSStudy-Swift2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				F54A36261BE84234006E897A /* Frameworks */,
+				F54A361B1BE83DF2006E897A /* Day1-SearchAPIs */,
 				F501BDFB1BC77F7C0035E7E9 /* 面向协议编程 */,
 				F501BDE91BC77F3A0035E7E9 /* AppDelegate.swift */,
 				F501BDEB1BC77F3A0035E7E9 /* ViewController.swift */,
@@ -73,6 +85,33 @@
 				F501BDFC1BC77FA00035E7E9 /* SwiftProtocols.swift */,
 			);
 			path = "面向协议编程";
+			sourceTree = "<group>";
+		};
+		F54A361B1BE83DF2006E897A /* Day1-SearchAPIs */ = {
+			isa = PBXGroup;
+			children = (
+				F54A362B1BE84344006E897A /* images */,
+				F54A361C1BE83E0E006E897A /* README.md */,
+				F54A36201BE8413C006E897A /* FriendTableViewController.swift */,
+				F54A36241BE84208006E897A /* Datasource.swift */,
+				F54A36291BE8427B006E897A /* Person.swift */,
+			);
+			path = "Day1-SearchAPIs";
+			sourceTree = "<group>";
+		};
+		F54A36261BE84234006E897A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F54A36271BE84240006E897A /* CoreSpotlight.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		F54A362B1BE84344006E897A /* images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,7 +184,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54A362A1BE8427B006E897A /* Person.swift in Sources */,
 				F501BDEC1BC77F3A0035E7E9 /* ViewController.swift in Sources */,
+				F54A36211BE8413C006E897A /* FriendTableViewController.swift in Sources */,
+				F54A36251BE84208006E897A /* Datasource.swift in Sources */,
 				F501BDEA1BC77F3A0035E7E9 /* AppDelegate.swift in Sources */,
 				F501BDFD1BC77FA00035E7E9 /* SwiftProtocols.swift in Sources */,
 			);

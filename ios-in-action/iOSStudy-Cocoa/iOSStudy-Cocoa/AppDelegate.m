@@ -19,12 +19,31 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    _window.backgroundColor = [UIColor whiteColor];
-    [self tableViewController];
-    [_window makeKeyWindow];
+    [self testStringSize];
+    
+//    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    _window.backgroundColor = [UIColor whiteColor];
+//    //[self tableViewController];
+//    [_window makeKeyWindow];
     
     return YES;
+}
+
+- (void)testStringSize {
+    
+    NSString * str = @"台北（桃园）";
+    
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    label.text = str;
+    
+    CGSize maxSize = CGSizeMake(320, 30);
+    NSDictionary * attrs = @{NSFontAttributeName : [UIFont systemFontOfSize:14]};
+    
+    CGSize strSize = [str boundingRectWithSize:maxSize
+                      options:(NSStringDrawingUsesLineFragmentOrigin)
+                   attributes:attrs context:nil].size;
+    NSLog(@"width=%f, height=%f", strSize.width, strSize.height);
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
