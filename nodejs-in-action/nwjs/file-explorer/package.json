@@ -1,0 +1,16 @@
+{
+  "name": "FileExplorer",
+  "version": "0.1",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "no"
+  },
+  "author": "bobjoy1010@qq.com",
+  "license": "ISC",
+  "window": {
+    "toolbar": false,
+    "width": 660,
+    "height": 500
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "HexoMD",
+  "description": "Markdown for hexo",
+  "main": "app/index.html",
+  "author": "bobjoy1010@qq.com",
+  "license": "MIT",
+  "version": "0.0.1",
+  "directories": {
+    "test": "no"
+  },
+  "devDependencies": {
+    "markdown": "^0.5.0"
+  },
+  "window": {
+    "title": "HexoMD",
+    "icon": "app/img/logo.ico",
+    "width": 1000,
+    "height": 700,
+    "position": "center",
+    "min_width": 600,
+    "min_height": 400
+  }
+}
