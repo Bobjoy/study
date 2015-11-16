@@ -8,6 +8,15 @@
 
 #import "NSURLSessionDemo.h"
 
+@interface NSURLSessionDemo() {
+    NSURLSessionDownloadTask * _task;
+    NSData * _data;
+    NSURLSession * _session;
+    NSURLRequest * _request;
+}
+
+@end
+
 @implementation NSURLSessionDemo
 
 @end

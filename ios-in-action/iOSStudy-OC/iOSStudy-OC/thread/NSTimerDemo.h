@@ -10,4 +10,6 @@
 
 @interface NSTimerDemo : NSObject
 
+- (void)startTimer;
+
 @end

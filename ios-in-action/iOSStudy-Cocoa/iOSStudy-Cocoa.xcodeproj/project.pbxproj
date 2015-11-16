@@ -117,14 +117,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F5B0CADB1B5F353400995668 = {
+		F50387101BF57C9800F549D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				F5CEA82C1B609AD50035A3CA /* AVFoundation.framework */,
 				F5B0CB0F1B5F35BC00995668 /* AddressBook.framework */,
 				F5B0CB0D1B5F35B500995668 /* AddressBookUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5B0CADB1B5F353400995668 = {
+			isa = PBXGroup;
+			children = (
 				F5B0CAE61B5F353500995668 /* iOSStudy-Cocoa */,
 				F5B0CB001B5F353500995668 /* iOSStudy-CocoaTests */,
+				F50387101BF57C9800F549D4 /* Frameworks */,
 				F5B0CAE51B5F353500995668 /* Products */,
 			);
 			sourceTree = "<group>";

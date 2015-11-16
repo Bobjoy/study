@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "NSString+Utilities.h"
+#import "NSTimerDemo.h"
 
 typedef enum {
     kCircle,
@@ -77,32 +78,6 @@ void parserChinese(NSString * chinese) {
     }
 }
 
-void formatStringsFromArrayWithAttributes(NSInteger start, NSArray * array) {
-    
-    for (int i = 0; i < array.count; i++) {
-        
-        NSDictionary * dict = array[i];
-        
-        NSString * str = dict[@"text"];
-        NSString * color = dict[@"color"];
-        NSString * font = dict[@"font"];
-        
-        NSInteger count = str.length;
-        
-        
-        
-        
-        
-        
-    }
-    
-    
-    
-    
-    
-    
-}
-
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 //        char response;
@@ -126,40 +101,40 @@ int main(int argc, const char * argv[]) {
         
         
         
-        NSString* str = @"https://www.baidu.com";
-        BOOL isURL = [str isURL];
-        NSLog(@"%x", isURL);
-        
-        Shape shapes[3];
-        
-        ShapeRect rect0 = {0, 0, 10, 30};
-        shapes[0].type = kCircle;
-        shapes[0].fillColor = kGreenColor;
-        shapes[0].bounds = rect0;
-        
-        ShapeRect rect1 = {30, 40, 50, 60};
-        shapes[1].type = kCircle;
-        shapes[1].fillColor = kGreenColor;
-        shapes[1].bounds = rect1;
-        
-        ShapeRect rect2 = {15, 18, 37, 29};
-        shapes[2].type = kCircle;
-        shapes[2].fillColor = kGreenColor;
-        shapes[2].bounds = rect2;
-        
-        FlightDynamicStatus s = 1;
-        switch (s) {
-            case kFlightDynamicStatusNotFly:
-                NSLog(@"not fly");
-                break;
-                
-            default:
-                break;
-        }
-        
-        NSString * chinese = @"您的航程信息如下：2015-09-30  09：30  南京禄口国际机场-北京首都机场!您的航班号为：MU2811您的座位号为:32A";
-        
-        parserChinese(chinese);
+//        NSString* str = @"https://www.baidu.com";
+//        BOOL isURL = [str isURL];
+//        NSLog(@"%x", isURL);
+//        
+//        Shape shapes[3];
+//        
+//        ShapeRect rect0 = {0, 0, 10, 30};
+//        shapes[0].type = kCircle;
+//        shapes[0].fillColor = kGreenColor;
+//        shapes[0].bounds = rect0;
+//        
+//        ShapeRect rect1 = {30, 40, 50, 60};
+//        shapes[1].type = kCircle;
+//        shapes[1].fillColor = kGreenColor;
+//        shapes[1].bounds = rect1;
+//        
+//        ShapeRect rect2 = {15, 18, 37, 29};
+//        shapes[2].type = kCircle;
+//        shapes[2].fillColor = kGreenColor;
+//        shapes[2].bounds = rect2;
+//        
+//        FlightDynamicStatus s = 1;
+//        switch (s) {
+//            case kFlightDynamicStatusNotFly:
+//                NSLog(@"not fly");
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//        
+//        NSString * chinese = @"您的航程信息如下：2015-09-30  09：30  南京禄口国际机场-北京首都机场!您的航班号为：MU2811您的座位号为:32A";
+//        
+//        parserChinese(chinese);
         
         
 //        NSArray * arr = @[
@@ -169,6 +144,8 @@ int main(int argc, const char * argv[]) {
         //formatStringsFromArrayWithAttributes(8, arr);
         
         
+        NSTimerDemo * timer = [[NSTimerDemo alloc] init];
+        [timer startTimer];
         
     }
     return 0;

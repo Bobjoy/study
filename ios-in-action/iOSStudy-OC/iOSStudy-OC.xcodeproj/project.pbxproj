@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F501BDDC1BC77E700035E7E9 /* MyFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = F501BDDB1BC77E700035E7E9 /* MyFileLogger.m */; settings = {ASSET_TAGS = (); }; };
+		F503870E1BF56C7B00F549D4 /* NSTimerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = F503870D1BF56C7B00F549D4 /* NSTimerDemo.m */; settings = {ASSET_TAGS = (); }; };
+		F50387141BF57D0700F549D4 /* NSURLSessionDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = F50387131BF57D0700F549D4 /* NSURLSessionDemo.m */; settings = {ASSET_TAGS = (); }; };
 		F554BC221B621AC600BC120E /* Sark.m in Sources */ = {isa = PBXBuildFile; fileRef = F554BC211B621AC600BC120E /* Sark.m */; };
 		F554BC291B621B6A00BC120E /* Sark+GayExtention.m in Sources */ = {isa = PBXBuildFile; fileRef = F554BC281B621B6A00BC120E /* Sark+GayExtention.m */; };
 		F5ACFB691BB8EC8D00BA1CFE /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = F5ACFB681BB8EC8D00BA1CFE /* Photo.m */; };
@@ -31,6 +33,10 @@
 /* Begin PBXFileReference section */
 		F501BDDA1BC77E700035E7E9 /* MyFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFileLogger.h; sourceTree = "<group>"; };
 		F501BDDB1BC77E700035E7E9 /* MyFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFileLogger.m; sourceTree = "<group>"; };
+		F503870C1BF56C7B00F549D4 /* NSTimerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTimerDemo.h; sourceTree = "<group>"; };
+		F503870D1BF56C7B00F549D4 /* NSTimerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTimerDemo.m; sourceTree = "<group>"; };
+		F50387121BF57D0700F549D4 /* NSURLSessionDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSURLSessionDemo.h; sourceTree = "<group>"; };
+		F50387131BF57D0700F549D4 /* NSURLSessionDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSURLSessionDemo.m; sourceTree = "<group>"; };
 		F554BC201B621AC600BC120E /* Sark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sark.h; sourceTree = "<group>"; };
 		F554BC211B621AC600BC120E /* Sark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sark.m; sourceTree = "<group>"; };
 		F554BC271B621B6A00BC120E /* Sark+GayExtention.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sark+GayExtention.h"; sourceTree = "<group>"; };
@@ -65,6 +71,24 @@
 			path = logs;
 			sourceTree = "<group>";
 		};
+		F503870B1BF56C3C00F549D4 /* thread */ = {
+			isa = PBXGroup;
+			children = (
+				F503870C1BF56C7B00F549D4 /* NSTimerDemo.h */,
+				F503870D1BF56C7B00F549D4 /* NSTimerDemo.m */,
+			);
+			path = thread;
+			sourceTree = "<group>";
+		};
+		F50387111BF57CE900F549D4 /* net */ = {
+			isa = PBXGroup;
+			children = (
+				F50387121BF57D0700F549D4 /* NSURLSessionDemo.h */,
+				F50387131BF57D0700F549D4 /* NSURLSessionDemo.m */,
+			);
+			path = net;
+			sourceTree = "<group>";
+		};
 		F554BC231B621AD100BC120E /* category */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,10 +121,12 @@
 		F5CEA7FB1B607C3B0035A3CA /* iOSStudy-OC */ = {
 			isa = PBXGroup;
 			children = (
+				F50387111BF57CE900F549D4 /* net */,
+				F503870B1BF56C3C00F549D4 /* thread */,
 				F501BDD71BC77DE30035E7E9 /* logs */,
+				F554BC231B621AD100BC120E /* category */,
 				F5ACFB6A1BB8EC9500BA1CFE /* Photo.h */,
 				F5ACFB681BB8EC8D00BA1CFE /* Photo.m */,
-				F554BC231B621AD100BC120E /* category */,
 				F5CEA7FC1B607C3B0035A3CA /* main.m */,
 				F5CEA8031B607C4D0035A3CA /* Person.h */,
 				F5CEA8041B607C4D0035A3CA /* Person.m */,
@@ -164,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F50387141BF57D0700F549D4 /* NSURLSessionDemo.m in Sources */,
 				F5ACFB691BB8EC8D00BA1CFE /* Photo.m in Sources */,
 				F5CEA8051B607C4D0035A3CA /* Person.m in Sources */,
 				F5ACFB6D1BB8F47E00BA1CFE /* NSString+Utilities.m in Sources */,
@@ -171,6 +198,7 @@
 				F554BC291B621B6A00BC120E /* Sark+GayExtention.m in Sources */,
 				F5CEA7FD1B607C3B0035A3CA /* main.m in Sources */,
 				F554BC221B621AC600BC120E /* Sark.m in Sources */,
+				F503870E1BF56C7B00F549D4 /* NSTimerDemo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

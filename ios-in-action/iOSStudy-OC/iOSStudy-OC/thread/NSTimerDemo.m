@@ -8,6 +8,21 @@
 
 #import "NSTimerDemo.h"
 
+@interface NSTimerDemo()
+
+@property (nonatomic, weak) NSTimer * timer;
+
+@end
+
 @implementation NSTimerDemo
+
+- (void)startTimer {
+    _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(timerFire:) userInfo:nil repeats:YES];
+    [_timer fire];
+}
+
+- (void)timerFire:(id)userInfo {
+    NSLog(@"Firing");
+}
 
 @end
