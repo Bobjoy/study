@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>CSS3-Transform</title>
+	<style>
+		body {font-size: 12px;margin: 0 auto;padding: 0;}
+		div {
+			width: 150px;
+			height: 150px;
+		}
+		.eg {
+			font-size: 1.5em;
+			background: goldenrod;
+			width: 50px;
+			height: 50px;
+			margin-top: 0px;
+		}
+		.example1 {
+			transform: translate(100px, 100px);
+		}
+		.example2 {
+			transform-origin: 50px 50px;
+			transform: rotate(45deg);
+		}
+		.example3 {
+			transform: translate(80px,80px) scale(1.5,1.5) rotate(45deg);
+		}
+		.example4 {
+			height: 150px;
+			width: 150px;
+			perspective: 500px;
+			border: 1px solid black;
+			background-color: #ccc;
+		}
+		.example4 > div {
+			width: 150px;
+			height: 150px;
+			transform-style: preserve-3d;
+			transform: rotateY(50deg);
+			background-color: blue;
+		}
+		.example4 > div > div {
+			width: 150px;
+			height: 150px;
+			transform-origin: top left;
+			transform: rotateX(40deg);
+			background-color: lime;
+		}
+		.example6 {
+			margin-top: 50px;
+			height: 145px;
+			width: 150px;
+			background-color: rgba(0, 0, 0, .3);
+			border: 1px solid black;
+			transform-style: preseve-3d;
+			perspective: 500px;
+		}
+		.example6 > div {
+			position: absolute;
+			left: 0;
+		}
+		.example6 > :first-child {
+			transform: rotateX(45deg);
+			background-color: orange;
+			top: 10px;
+			height: 135px;
+		}
+		.example6 > :last-child {
+			transform: translateZ(40px);
+			background-color: rgba(0, 0, 255, .75);
+			top: 50px;
+			height: 100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="eg example1">EXAMPLE1</div>
+	<div class="eg example2">EXAMPLE2</div>
+	<div class="eg example3">EXAMPLE3</div>
+	<div class="eg" style="transform: translate(80px,180px);">
+		<div style="transform: scale(1.5,1.5);">
+			<div style="transform: rotate(45deg);">EXAMPLE4</div>
+		</div>
+	</div>
+	<div class="eg example4">
+		<div class="transformed">
+			<div class="child"></div>
+		</div>
+	</div>
+	<div class="example6">
+		<div></div>
+		<div></div>
+	</div>
+</body>
+</html>
