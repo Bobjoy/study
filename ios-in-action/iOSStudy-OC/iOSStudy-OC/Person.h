@@ -9,10 +9,14 @@
 #import <Foundation/Foundation.h>
 
 @interface Person : NSObject {
-    NSString *firstName;
+    @public NSString *firstName;
     NSString *lastName;
     int age;
+    
+    @public NSString *hands[2];
 }
+
+@property (nonatomic, strong) NSArray *foots;
 
 - (void)enterInfo;
 - (void)printInfo;

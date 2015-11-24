@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "NSString+Utilities.h"
 #import "NSTimerDemo.h"
+#import "Person.h"
 
 typedef enum {
     kCircle,
@@ -147,6 +148,13 @@ int main(int argc, const char * argv[]) {
         NSTimerDemo * timer = [[NSTimerDemo alloc] init];
         [timer startTimer];
         
+        Person *person = [[Person alloc] init];
+        //person->hands[0] = @"left";
+        //person->hands[1] = @"right";
+        NSLog(@"person's  %@ hand", person->hands[0]);
+        NSLog(@"person's  %@ hand", person->hands[1]);
+        
+        NSLog(@"person's  %@ foot", person.foots[0]);
     }
     return 0;
 }

@@ -1,0 +1,25 @@
+{
+  "name": "gulp-ant",
+  "version": "0.0.1",
+  "description": "Gulp Plugin For Java Ant Tool",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com.bobjoy/gulp-ant.git"
+  },
+  "keywords": [
+    "gulp",
+    "plugin",
+    "ant",
+    "java"
+  ],
+  "author": "bobjoy",
+  "license": "MIT",
+  "dependencies": {
+    "gulp-util": "^3.0.7",
+    "through2": "^2.0.0"
+  }
+}

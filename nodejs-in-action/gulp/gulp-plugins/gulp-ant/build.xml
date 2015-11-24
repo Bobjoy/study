@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="study" default="test" basedir="../">
+	
+	<target name="test" description="打印提示信息">
+		<echo message="The base dir is: ${basedir}" />
+	</target>
+
+</project>

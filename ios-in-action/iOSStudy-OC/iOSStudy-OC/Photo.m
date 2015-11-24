@@ -8,6 +8,7 @@
 
 #import "Photo.h"
 #import "NSString+Utilities.h"
+#import "Person.h"
 
 @implementation Photo
 
@@ -25,7 +26,6 @@
     NSString* str = [NSString string];
     BOOL isURL = [str isURL];
     NSLog(@"%x", isURL);
-    
     return caption;
 }
 
